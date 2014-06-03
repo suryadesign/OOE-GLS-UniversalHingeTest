@@ -107,9 +107,6 @@
     <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NationalInstruments.Common, Version=13.0.40.190, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
-    <Reference Include="NationalInstruments.UI, Version=12.0.40.318, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
-    <Reference Include="NationalInstruments.UI.WindowsForms, Version=12.0.40.318, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -120,9 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
-    <Import Include="NationalInstruments" />
-    <Import Include="NationalInstruments.UI" />
-    <Import Include="NationalInstruments.UI.WindowsForms" />
     <Import Include="System" />
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
@@ -195,9 +189,9 @@
     <None Include="Resources\SD Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\up.png" />
-    <None Include="Resources\down.png" />
     <None Include="Resources\home.png" />
+    <Content Include="Resources\CCW.png" />
+    <Content Include="Resources\CW.png" />
     <Content Include="Resources\openfolder_24.bmp" />
   </ItemGroup>
   <ItemGroup>

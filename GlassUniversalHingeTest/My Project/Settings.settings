@@ -8,8 +8,8 @@
     <Setting Name="AIRes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">32768</Value>
     </Setting>
-    <Setting Name="FullScaleForce" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">3</Value>
+    <Setting Name="FullScaleTorque" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="AIScale" Type="System.String" Scope="Application">
       <Value Profile="(Default)">10</Value>
@@ -38,15 +38,6 @@
     <Setting Name="LastDataFilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\sandheep\Desktop\tmp</Value>
     </Setting>
-    <Setting Name="LastEndOnConsecSwitchFailures" Type="System.String" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="LastEndOnTotalSwitchFailures" Type="System.String" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="LastConsecFailLimit" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
     <Setting Name="LastDwellTime" Type="System.String" Scope="User">
       <Value Profile="(Default)">250</Value>
     </Setting>
@@ -56,22 +47,13 @@
     <Setting Name="LastEndOnFixtureErrorCycles" Type="System.String" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="LastIgnoreSwitchStatus" Type="System.String" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="FullScaleVoltage" Type="System.String" Scope="Application">
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="LastRelPos" Type="System.String" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="LastTargetForce" Type="System.String" Scope="User">
-      <Value Profile="(Default)">200</Value>
-    </Setting>
-    <Setting Name="LastZTargetForce" Type="System.String" Scope="User">
-      <Value Profile="(Default)">200</Value>
-    </Setting>
-    <Setting Name="LastTravelEndCond" Type="System.Int32" Scope="User">
+    <Setting Name="LastMotionMode" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="LastDAQFrequency" Type="System.String" Scope="User">
@@ -80,44 +62,83 @@
     <Setting Name="LastChkCycles" Type="System.String" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="LastChkTotalButtonFail" Type="System.String" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="LastChkConsecButtonFail" Type="System.String" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="LastChkFixtureFail" Type="System.String" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="LastGraphDisplay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="VelX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
+    <Setting Name="VelTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">180</Value>
     </Setting>
-    <Setting Name="AccX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
+    <Setting Name="AccTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">360</Value>
     </Setting>
-    <Setting Name="DecX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
+    <Setting Name="DecTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">360</Value>
     </Setting>
-    <Setting Name="JerkX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">10000</Value>
+    <Setting Name="JerkTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3600</Value>
     </Setting>
-    <Setting Name="KDecX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100000</Value>
+    <Setting Name="KDecTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3600</Value>
     </Setting>
     <Setting Name="LastZeroPosition" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="LastLimitForce" Type="System.Boolean" Scope="User">
+    <Setting Name="LastLimitTorque" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="LastForceLimit" Type="System.Decimal" Scope="User">
+    <Setting Name="LastTorqueLimit" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="LastXPos" Type="System.Decimal" Scope="User">
+    <Setting Name="LastThetaPos" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="CrystalNeutralTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">88.105</Value>
+    </Setting>
+    <Setting Name="TempleNeutralTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-17.48</Value>
+    </Setting>
+    <Setting Name="CrystalGapTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">4.695</Value>
+    </Setting>
+    <Setting Name="TempleGapTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">4.05</Value>
+    </Setting>
+    <Setting Name="LastDeviceType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HomeVelTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="DefaultVelTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
+    <Setting Name="DefaultAccTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">360</Value>
+    </Setting>
+    <Setting Name="DefaultDecTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">360</Value>
+    </Setting>
+    <Setting Name="DefaultJerkTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">3600</Value>
+    </Setting>
+    <Setting Name="DefaultKDecTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">3600</Value>
+    </Setting>
+    <Setting Name="DefaultCrystalNeutralTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">88.105</Value>
+    </Setting>
+    <Setting Name="DefaultTempleNeutralTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">-17.48</Value>
+    </Setting>
+    <Setting Name="DefaultCrystalGapTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">4.695</Value>
+    </Setting>
+    <Setting Name="DefaultTempleGapTheta" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">4.05</Value>
     </Setting>
   </Settings>
 </SettingsFile>
