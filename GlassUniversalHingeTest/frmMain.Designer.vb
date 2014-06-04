@@ -23,9 +23,9 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Title1 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Title2 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
         Me.tctlMain = New System.Windows.Forms.TabControl()
         Me.tabMain = New System.Windows.Forms.TabPage()
         Me.lblStartTime = New System.Windows.Forms.Label()
@@ -52,7 +52,7 @@ Partial Class frmMain
         Me.picLidStatus = New System.Windows.Forms.PictureBox()
         Me.picDriveEnabled = New System.Windows.Forms.PictureBox()
         Me.pbrTorque = New System.Windows.Forms.ProgressBar()
-        Me.lblForce = New System.Windows.Forms.Label()
+        Me.lblTorque = New System.Windows.Forms.Label()
         Me.lblThetaPos = New System.Windows.Forms.Label()
         Me.cmdZeroThetaPos = New System.Windows.Forms.Button()
         Me.cmdEnableAxis = New System.Windows.Forms.Button()
@@ -284,7 +284,7 @@ Partial Class frmMain
         Me.stpMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stpStatusStrip})
         Me.stpMain.Location = New System.Drawing.Point(0, 520)
         Me.stpMain.Name = "stpMain"
-        Me.stpMain.Size = New System.Drawing.Size(876, 22)
+        Me.stpMain.Size = New System.Drawing.Size(334, 22)
         Me.stpMain.TabIndex = 1
         Me.stpMain.Text = "StatusStrip1"
         '
@@ -305,7 +305,7 @@ Partial Class frmMain
         Me.GroupBox1.Controls.Add(Me.picLidStatus)
         Me.GroupBox1.Controls.Add(Me.picDriveEnabled)
         Me.GroupBox1.Controls.Add(Me.pbrTorque)
-        Me.GroupBox1.Controls.Add(Me.lblForce)
+        Me.GroupBox1.Controls.Add(Me.lblTorque)
         Me.GroupBox1.Controls.Add(Me.lblThetaPos)
         Me.GroupBox1.Controls.Add(Me.cmdZeroThetaPos)
         Me.GroupBox1.Controls.Add(Me.cmdEnableAxis)
@@ -345,16 +345,17 @@ Partial Class frmMain
         Me.pbrTorque.Location = New System.Drawing.Point(144, 96)
         Me.pbrTorque.Name = "pbrTorque"
         Me.pbrTorque.Size = New System.Drawing.Size(168, 16)
+        Me.pbrTorque.Step = 1
         Me.pbrTorque.TabIndex = 38
         '
-        'lblForce
+        'lblTorque
         '
-        Me.lblForce.AutoSize = True
-        Me.lblForce.Location = New System.Drawing.Point(96, 96)
-        Me.lblForce.Name = "lblForce"
-        Me.lblForce.Size = New System.Drawing.Size(46, 13)
-        Me.lblForce.TabIndex = 37
-        Me.lblForce.Text = "0000.00"
+        Me.lblTorque.AutoSize = True
+        Me.lblTorque.Location = New System.Drawing.Point(96, 96)
+        Me.lblTorque.Name = "lblTorque"
+        Me.lblTorque.Size = New System.Drawing.Size(46, 13)
+        Me.lblTorque.TabIndex = 37
+        Me.lblTorque.Text = "0000.00"
         '
         'lblThetaPos
         '
@@ -486,9 +487,9 @@ Partial Class frmMain
         Me.Label22.AutoSize = True
         Me.Label22.Location = New System.Drawing.Point(56, 28)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(23, 13)
+        Me.Label22.Size = New System.Drawing.Size(25, 13)
         Me.Label22.TabIndex = 31
-        Me.Label22.Text = "mm"
+        Me.Label22.Text = "deg"
         '
         'cmdMoveAbs
         '
@@ -572,45 +573,36 @@ Partial Class frmMain
         '
         Me.chtTorqueVsDisp.BorderlineColor = System.Drawing.Color.Black
         Me.chtTorqueVsDisp.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
-        ChartArea1.AxisX.Interval = 0.2R
-        ChartArea1.AxisX.IsLabelAutoFit = False
-        ChartArea1.AxisX.LabelStyle.Interval = 0.0R
-        ChartArea1.AxisX.MajorGrid.Interval = 0.1R
-        ChartArea1.AxisX.Minimum = 0.0R
-        ChartArea1.AxisX.MinorGrid.Enabled = True
-        ChartArea1.AxisX.MinorGrid.Interval = 0.05R
-        ChartArea1.AxisX.MinorGrid.LineColor = System.Drawing.Color.DarkGray
-        ChartArea1.AxisX.TitleFont = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        ChartArea1.AxisY.Interval = 50.0R
-        ChartArea1.AxisY.MajorGrid.Interval = 50.0R
-        ChartArea1.AxisY.Minimum = -50.0R
-        ChartArea1.AxisY.MinorGrid.Enabled = True
-        ChartArea1.AxisY.MinorGrid.Interval = 25.0R
-        ChartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.DarkGray
-        ChartArea1.AxisY.TitleFont = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        ChartArea1.BackColor = System.Drawing.Color.WhiteSmoke
-        ChartArea1.Name = "ChartArea1"
-        Me.chtTorqueVsDisp.ChartAreas.Add(ChartArea1)
-        Legend1.BorderColor = System.Drawing.Color.Black
-        Legend1.DockedToChartArea = "ChartArea1"
-        Legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left
-        Legend1.Name = "Legend1"
-        Me.chtTorqueVsDisp.Legends.Add(Legend1)
+        ChartArea2.AxisX.LabelStyle.Interval = 0.0R
+        ChartArea2.AxisX.MinorGrid.Enabled = True
+        ChartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.DarkGray
+        ChartArea2.AxisX.TitleFont = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        ChartArea2.AxisY.MinorGrid.Enabled = True
+        ChartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.DarkGray
+        ChartArea2.AxisY.TitleFont = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        ChartArea2.BackColor = System.Drawing.Color.WhiteSmoke
+        ChartArea2.Name = "ChartArea1"
+        Me.chtTorqueVsDisp.ChartAreas.Add(ChartArea2)
+        Legend2.BorderColor = System.Drawing.Color.Black
+        Legend2.DockedToChartArea = "ChartArea1"
+        Legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left
+        Legend2.Name = "Legend1"
+        Me.chtTorqueVsDisp.Legends.Add(Legend2)
         Me.chtTorqueVsDisp.Location = New System.Drawing.Point(336, 8)
         Me.chtTorqueVsDisp.Name = "chtTorqueVsDisp"
         Me.chtTorqueVsDisp.Size = New System.Drawing.Size(536, 504)
         Me.chtTorqueVsDisp.TabIndex = 30
         Me.chtTorqueVsDisp.Text = "Chart1"
-        Title1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold)
-        Title1.Name = "Title1"
-        Title1.Text = "Force Profile"
-        Me.chtTorqueVsDisp.Titles.Add(Title1)
+        Title2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold)
+        Title2.Name = "Title1"
+        Title2.Text = "Torque Profile"
+        Me.chtTorqueVsDisp.Titles.Add(Title2)
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(876, 542)
+        Me.ClientSize = New System.Drawing.Size(334, 542)
         Me.Controls.Add(Me.chtTorqueVsDisp)
         Me.Controls.Add(Me.gbxManualControl)
         Me.Controls.Add(Me.GroupBox1)
@@ -667,7 +659,7 @@ Partial Class frmMain
     Friend WithEvents cmdEnableAxis As System.Windows.Forms.Button
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents lblForce As System.Windows.Forms.Label
+    Friend WithEvents lblTorque As System.Windows.Forms.Label
     Friend WithEvents lblThetaPos As System.Windows.Forms.Label
     Friend WithEvents gbxManualControl As System.Windows.Forms.GroupBox
     Friend WithEvents cmdMoveOneCCW As System.Windows.Forms.Button

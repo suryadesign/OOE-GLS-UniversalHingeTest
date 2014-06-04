@@ -284,6 +284,7 @@ Partial Class frmTestInput
         '
         'txtTorqueLimit
         '
+        Me.txtTorqueLimit.Enabled = False
         Me.txtTorqueLimit.Location = New System.Drawing.Point(160, 92)
         Me.txtTorqueLimit.Name = "txtTorqueLimit"
         Me.txtTorqueLimit.Size = New System.Drawing.Size(64, 20)
@@ -293,6 +294,7 @@ Partial Class frmTestInput
         'chkLimitTorque
         '
         Me.chkLimitTorque.AutoSize = True
+        Me.chkLimitTorque.Enabled = False
         Me.chkLimitTorque.Location = New System.Drawing.Point(8, 96)
         Me.chkLimitTorque.Name = "chkLimitTorque"
         Me.chkLimitTorque.Size = New System.Drawing.Size(121, 17)

@@ -5,7 +5,7 @@ Module ACSInterface
     Public Const ErrByte As Byte = 2                'err value for functions that return byte values
     Public Const OzIn2KgfCm As Single = 0.072007788932      'conversion from Oz-in to Kgf-cm
     Public Const MaxTorque As Single = 50 * OzIn2KgfCm  'max torque of torque transducer (must match upper calibration value for FUTEK)
-    Public Const ForceDataPoints As Integer = 1000   'must match ACS script NRawSamples/Discard rate (5000/5)
+    Public Const TorqueDataPoints As Integer = 1000   'must match ACS script NRawSamples/Discard rate (5000/5)
     Public TorqueConversionFactor As Single = -1 / My.Settings.FullScaleVoltage / My.Settings.AIScale * My.Settings.FullScaleTorque * OzIn2KgfCm
     Public Const m As Single = 111.37               'XCURV vs force - check excel spreadsheet for this value
     Public Const b As Single = 208.47               'XCURV vs force - check excel spreadsheet for this value
@@ -176,15 +176,15 @@ Module ACSInterface
     End Function
     Public Function GetTorque(ByRef ErrMsg As String) As Single
         'gets the force from the force transducer
-        Dim Force As Single
+        Dim Torque As Single
         Try
-            Force = Ch.Transaction("?AIN0")
+            Torque = Ch.Transaction("?AIN0")
         Catch ex As Exception
             ErrMsg = ex.Message
             GetTorque = ErrSingle
             Exit Function
         End Try
-        GetTorque = Force * TorqueConversionFactor
+        GetTorque = Torque * TorqueConversionFactor
     End Function
     Public Function GetLidStatus(ByRef ErrMsg As String) As Byte
         'checks whether the Lid is closed or not
