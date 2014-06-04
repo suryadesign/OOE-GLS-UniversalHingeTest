@@ -457,12 +457,7 @@
             End If
         End If
 
-        InitLoc = GetPos(0, ErrMsg)
-        If InitLoc = ErrSingle Then
-            MsgBox("ERROR:" & ErrMsg)
-            ErrMsg = ""
-        End If
-
+        
         Dim i As Integer = 1
         Dim TorqueArray
         If LimitTorque Then
@@ -511,6 +506,11 @@
                 stpStatusStrip.Text = "Move error...Idle." & ErrMsg
                 ErrMsg = ""
             End If
+        End If
+        InitLoc = GetPos(0, ErrMsg)
+        If InitLoc = ErrSingle Then
+            MsgBox("ERROR:" & ErrMsg)
+            ErrMsg = ""
         End If
         Do
             lblCurrentCycle.Text = i.ToString("n0")
@@ -600,6 +600,10 @@ CycleEnd:
             End If
             i = i + 1
         Loop Until False
+
+        'move actuator back to original position
+        MoveActuator("X", 0, True, ErrMsg)
+
 
         'write test summary 
         Try
