@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Force Feedback Button Test")> 
+<Assembly: AssemblyTitle("Glass Hinge Test")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Surya Design")> 
-<Assembly: AssemblyProduct("Force Feedback Button Test")> 
+<Assembly: AssemblyProduct("Glass Hinge Test")> 
 <Assembly: AssemblyCopyright("Copyright ©  2014")> 
 <Assembly: AssemblyTrademark("")> 
 

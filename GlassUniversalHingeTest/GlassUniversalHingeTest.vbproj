@@ -8,9 +8,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0F790C35-16CE-4D4F-ABE7-D2DA358F7547}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>ForceFeedbackButtonTest.My.MyApplication</StartupObject>
-    <RootNamespace>ForceFeedbackButtonTest</RootNamespace>
-    <AssemblyName>ForceFeedbackButtonTest</AssemblyName>
+    <StartupObject>GlassUniversalHingeTest.My.MyApplication</StartupObject>
+    <RootNamespace>GlassUniversalHingeTest</RootNamespace>
+    <AssemblyName>GlassUniversalHingeTest</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -39,7 +39,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>ForceFeedbackButtonTest.xml</DocumentationFile>
+    <DocumentationFile>GlassUniversalHingeTest.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
@@ -49,7 +49,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>ForceFeedbackButtonTest.xml</DocumentationFile>
+    <DocumentationFile>GlassUniversalHingeTest.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -87,7 +87,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DocumentationFile>ForceFeedbackButtonTest.xml</DocumentationFile>
+    <DocumentationFile>GlassUniversalHingeTest.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -97,7 +97,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DocumentationFile>ForceFeedbackButtonTest.xml</DocumentationFile>
+    <DocumentationFile>GlassUniversalHingeTest.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>pdbonly</DebugType>

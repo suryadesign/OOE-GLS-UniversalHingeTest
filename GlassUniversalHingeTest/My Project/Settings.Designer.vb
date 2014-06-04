@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("10.0.0.100")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10.0.0.102")>  _
         Public ReadOnly Property ACSIP() As String
             Get
                 Return CType(Me("ACSIP"),String)
@@ -565,9 +565,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.ForceFeedbackButtonTest.My.MySettings
+        Friend ReadOnly Property Settings() As Global.GlassUniversalHingeTest.My.MySettings
             Get
-                Return Global.ForceFeedbackButtonTest.My.MySettings.Default
+                Return Global.GlassUniversalHingeTest.My.MySettings.Default
             End Get
         End Property
     End Module

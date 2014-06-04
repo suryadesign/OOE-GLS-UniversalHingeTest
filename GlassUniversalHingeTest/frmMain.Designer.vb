@@ -532,7 +532,7 @@ Partial Class frmMain
         '
         'cmdHome
         '
-        Me.cmdHome.Image = Global.ForceFeedbackButtonTest.My.Resources.Resources.home
+        Me.cmdHome.Image = Global.GlassUniversalHingeTest.My.Resources.Resources.home
         Me.cmdHome.Location = New System.Drawing.Point(136, 56)
         Me.cmdHome.Name = "cmdHome"
         Me.cmdHome.Size = New System.Drawing.Size(56, 56)

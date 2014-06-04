@@ -33,17 +33,21 @@ Partial Class frmTestInput
         Me.txtFixtureErrorCyles = New System.Windows.Forms.NumericUpDown()
         Me.chkEndOnCycles = New System.Windows.Forms.CheckBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.txtRelPos = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.rdoUnidirectionalCCW = New System.Windows.Forms.RadioButton()
         Me.rdoBidirectional = New System.Windows.Forms.RadioButton()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.rdoUnidirectionalCW = New System.Windows.Forms.RadioButton()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtRelPos = New System.Windows.Forms.TextBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.rdoDistance = New System.Windows.Forms.RadioButton()
         Me.rdoDisplacement = New System.Windows.Forms.RadioButton()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.rdoTempleHinge = New System.Windows.Forms.RadioButton()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.rdoCrystalHinge = New System.Windows.Forms.RadioButton()
         Me.txtTorqueLimit = New System.Windows.Forms.TextBox()
         Me.chkLimitTorque = New System.Windows.Forms.CheckBox()
         Me.chkZeroPosition = New System.Windows.Forms.CheckBox()
@@ -61,13 +65,9 @@ Partial Class frmTestInput
         Me.rdoDAQEvery100 = New System.Windows.Forms.RadioButton()
         Me.rdoDAQEvery10 = New System.Windows.Forms.RadioButton()
         Me.rdoDAQEvery1 = New System.Windows.Forms.RadioButton()
-        Me.cmdShowFolderDialog = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtDataFilePath = New System.Windows.Forms.TextBox()
-        Me.rdoUnidirectionalCCW = New System.Windows.Forms.RadioButton()
-        Me.rdoCrystalHinge = New System.Windows.Forms.RadioButton()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.rdoTempleHinge = New System.Windows.Forms.RadioButton()
+        Me.cmdShowFolderDialog = New System.Windows.Forms.Button()
         CType(Me.txtNumCycles, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.txtFixtureErrorCyles, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,6 +154,15 @@ Partial Class frmTestInput
         Me.chkEndOnCycles.Text = "Cycles"
         Me.chkEndOnCycles.UseVisualStyleBackColor = True
         '
+        'txtRelPos
+        '
+        Me.txtRelPos.Location = New System.Drawing.Point(136, 20)
+        Me.txtRelPos.Name = "txtRelPos"
+        Me.txtRelPos.Size = New System.Drawing.Size(64, 20)
+        Me.txtRelPos.TabIndex = 1
+        Me.txtRelPos.Text = "0.005"
+        Me.ToolTip1.SetToolTip(Me.txtRelPos, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.rdoUnidirectionalCCW)
@@ -168,6 +177,17 @@ Partial Class frmTestInput
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Travel End Condition"
+        '
+        'rdoUnidirectionalCCW
+        '
+        Me.rdoUnidirectionalCCW.AutoSize = True
+        Me.rdoUnidirectionalCCW.Location = New System.Drawing.Point(16, 88)
+        Me.rdoUnidirectionalCCW.Name = "rdoUnidirectionalCCW"
+        Me.rdoUnidirectionalCCW.Size = New System.Drawing.Size(176, 17)
+        Me.rdoUnidirectionalCCW.TabIndex = 6
+        Me.rdoUnidirectionalCCW.TabStop = True
+        Me.rdoUnidirectionalCCW.Text = "Unidirectional Counterclockwise"
+        Me.rdoUnidirectionalCCW.UseVisualStyleBackColor = True
         '
         'rdoBidirectional
         '
@@ -209,20 +229,12 @@ Partial Class frmTestInput
         Me.Label7.TabIndex = 2
         Me.Label7.Text = "Relative Position [deg]"
         '
-        'txtRelPos
-        '
-        Me.txtRelPos.Location = New System.Drawing.Point(136, 20)
-        Me.txtRelPos.Name = "txtRelPos"
-        Me.txtRelPos.Size = New System.Drawing.Size(64, 20)
-        Me.txtRelPos.TabIndex = 1
-        Me.txtRelPos.Text = "0.005"
-        Me.ToolTip1.SetToolTip(Me.txtRelPos, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
-        '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.Label4)
         Me.GroupBox4.Controls.Add(Me.rdoDistance)
         Me.GroupBox4.Controls.Add(Me.rdoDisplacement)
+        Me.GroupBox4.Enabled = False
         Me.GroupBox4.Location = New System.Drawing.Point(296, 232)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(296, 64)
@@ -246,13 +258,13 @@ Partial Class frmTestInput
         Me.rdoDistance.Name = "rdoDistance"
         Me.rdoDistance.Size = New System.Drawing.Size(67, 17)
         Me.rdoDistance.TabIndex = 1
-        Me.rdoDistance.TabStop = True
         Me.rdoDistance.Text = "Distance"
         Me.rdoDistance.UseVisualStyleBackColor = True
         '
         'rdoDisplacement
         '
         Me.rdoDisplacement.AutoSize = True
+        Me.rdoDisplacement.Checked = True
         Me.rdoDisplacement.Location = New System.Drawing.Point(16, 40)
         Me.rdoDisplacement.Name = "rdoDisplacement"
         Me.rdoDisplacement.Size = New System.Drawing.Size(89, 17)
@@ -282,6 +294,37 @@ Partial Class frmTestInput
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "General Test Info/Options"
         '
+        'rdoTempleHinge
+        '
+        Me.rdoTempleHinge.AutoSize = True
+        Me.rdoTempleHinge.Location = New System.Drawing.Point(128, 160)
+        Me.rdoTempleHinge.Name = "rdoTempleHinge"
+        Me.rdoTempleHinge.Size = New System.Drawing.Size(91, 17)
+        Me.rdoTempleHinge.TabIndex = 52
+        Me.rdoTempleHinge.TabStop = True
+        Me.rdoTempleHinge.Text = "Temple Hinge"
+        Me.rdoTempleHinge.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(8, 144)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(68, 13)
+        Me.Label9.TabIndex = 51
+        Me.Label9.Text = "Device Type"
+        '
+        'rdoCrystalHinge
+        '
+        Me.rdoCrystalHinge.AutoSize = True
+        Me.rdoCrystalHinge.Location = New System.Drawing.Point(16, 160)
+        Me.rdoCrystalHinge.Name = "rdoCrystalHinge"
+        Me.rdoCrystalHinge.Size = New System.Drawing.Size(87, 17)
+        Me.rdoCrystalHinge.TabIndex = 50
+        Me.rdoCrystalHinge.TabStop = True
+        Me.rdoCrystalHinge.Text = "Crystal Hinge"
+        Me.rdoCrystalHinge.UseVisualStyleBackColor = True
+        '
         'txtTorqueLimit
         '
         Me.txtTorqueLimit.Enabled = False
@@ -305,6 +348,9 @@ Partial Class frmTestInput
         'chkZeroPosition
         '
         Me.chkZeroPosition.AutoSize = True
+        Me.chkZeroPosition.Checked = True
+        Me.chkZeroPosition.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkZeroPosition.Enabled = False
         Me.chkZeroPosition.Location = New System.Drawing.Point(8, 120)
         Me.chkZeroPosition.Name = "chkZeroPosition"
         Me.chkZeroPosition.Size = New System.Drawing.Size(140, 17)
@@ -459,16 +505,6 @@ Partial Class frmTestInput
         Me.rdoDAQEvery1.Text = "Every Cycle"
         Me.rdoDAQEvery1.UseVisualStyleBackColor = True
         '
-        'cmdShowFolderDialog
-        '
-        Me.cmdShowFolderDialog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.cmdShowFolderDialog.Image = CType(resources.GetObject("cmdShowFolderDialog.Image"), System.Drawing.Image)
-        Me.cmdShowFolderDialog.Location = New System.Drawing.Point(240, 136)
-        Me.cmdShowFolderDialog.Name = "cmdShowFolderDialog"
-        Me.cmdShowFolderDialog.Size = New System.Drawing.Size(24, 24)
-        Me.cmdShowFolderDialog.TabIndex = 7
-        Me.cmdShowFolderDialog.UseVisualStyleBackColor = True
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -485,47 +521,15 @@ Partial Class frmTestInput
         Me.txtDataFilePath.Size = New System.Drawing.Size(232, 20)
         Me.txtDataFilePath.TabIndex = 6
         '
-        'rdoUnidirectionalCCW
+        'cmdShowFolderDialog
         '
-        Me.rdoUnidirectionalCCW.AutoSize = True
-        Me.rdoUnidirectionalCCW.Location = New System.Drawing.Point(16, 88)
-        Me.rdoUnidirectionalCCW.Name = "rdoUnidirectionalCCW"
-        Me.rdoUnidirectionalCCW.Size = New System.Drawing.Size(176, 17)
-        Me.rdoUnidirectionalCCW.TabIndex = 6
-        Me.rdoUnidirectionalCCW.TabStop = True
-        Me.rdoUnidirectionalCCW.Text = "Unidirectional Counterclockwise"
-        Me.rdoUnidirectionalCCW.UseVisualStyleBackColor = True
-        '
-        'rdoCrystalHinge
-        '
-        Me.rdoCrystalHinge.AutoSize = True
-        Me.rdoCrystalHinge.Location = New System.Drawing.Point(16, 160)
-        Me.rdoCrystalHinge.Name = "rdoCrystalHinge"
-        Me.rdoCrystalHinge.Size = New System.Drawing.Size(87, 17)
-        Me.rdoCrystalHinge.TabIndex = 50
-        Me.rdoCrystalHinge.TabStop = True
-        Me.rdoCrystalHinge.Text = "Crystal Hinge"
-        Me.rdoCrystalHinge.UseVisualStyleBackColor = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(8, 144)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(68, 13)
-        Me.Label9.TabIndex = 51
-        Me.Label9.Text = "Device Type"
-        '
-        'rdoTempleHinge
-        '
-        Me.rdoTempleHinge.AutoSize = True
-        Me.rdoTempleHinge.Location = New System.Drawing.Point(128, 160)
-        Me.rdoTempleHinge.Name = "rdoTempleHinge"
-        Me.rdoTempleHinge.Size = New System.Drawing.Size(91, 17)
-        Me.rdoTempleHinge.TabIndex = 52
-        Me.rdoTempleHinge.TabStop = True
-        Me.rdoTempleHinge.Text = "Temple Hinge"
-        Me.rdoTempleHinge.UseVisualStyleBackColor = True
+        Me.cmdShowFolderDialog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.cmdShowFolderDialog.Image = CType(resources.GetObject("cmdShowFolderDialog.Image"), System.Drawing.Image)
+        Me.cmdShowFolderDialog.Location = New System.Drawing.Point(240, 136)
+        Me.cmdShowFolderDialog.Name = "cmdShowFolderDialog"
+        Me.cmdShowFolderDialog.Size = New System.Drawing.Size(24, 24)
+        Me.cmdShowFolderDialog.TabIndex = 7
+        Me.cmdShowFolderDialog.UseVisualStyleBackColor = True
         '
         'frmTestInput
         '
