@@ -101,7 +101,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("10000000")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("50000000")>  _
         Public ReadOnly Property ShortTimeOut() As String
             Get
                 Return CType(Me("ShortTimeOut"),String)
