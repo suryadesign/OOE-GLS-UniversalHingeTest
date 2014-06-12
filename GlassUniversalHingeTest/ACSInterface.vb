@@ -45,7 +45,7 @@ Module ACSInterface
         End Try
         DisconnectACS = True
     End Function
-    Public Function Home(ByVal Axis As String, ByRef ErrMsg As String) As Boolean
+    Public Function Home(ByVal Axis As String, ByVal IndextoNoon As Single, ByRef ErrMsg As String) As Boolean
         'Homes actuator
         Dim T0 As Long = Date.Now.Ticks
         Dim BufNum As Integer = 1
@@ -57,6 +57,7 @@ Module ACSInterface
             Case "Z"
                 Ch.WriteVariable(2, "AXIS", Ch.ACSC_NONE)
         End Select
+        Ch.WriteVariable(IndextoNoon, "INDEXTONOON", Ch.ACSC_NONE)
         Ch.StopBuffer(BufNum)
         Ch.CompileBuffer(BufNum)
         Ch.RunBuffer(BufNum)
@@ -140,8 +141,8 @@ Module ACSInterface
             If TorqueLimit > MaxTorque Then
                 TorqueLimit = MaxTorque
             End If
-            Ch.Transaction("XCURV" & Axis & " = " & 10.3467)
-            Ch.Transaction("XCURI" & Axis & " = " & 10.3467)
+            'Ch.Transaction("XCURV" & Axis & " = " & 10.3467)
+            'Ch.Transaction("XCURI" & Axis & " = " & 10.3467)
             'Ch.Transaction("XCURV" & Axis & " = " & (TorqueLimit - b) / m)
             'Ch.Transaction("XCURI" & Axis & " = " & (TorqueLimit - b) / m)
         Catch ex As Exception
@@ -251,7 +252,7 @@ Module ACSInterface
         If RunStatus = 0 Then
             TwistToPosition = Ch.ReadVariableAsMatrix("TORQUEDATACOLUMN", BufNum)
         ElseIf RunStatus = -2 Then
-            ErrMsg = "Actuation error: Down travel end condition not met!"
+            ErrMsg = "Actuation error: Travel end condition not met!"
             TwistToPosition = False
         ElseIf RunStatus = -1 Then
             ErrMsg = "Actuation error: Timed out!"

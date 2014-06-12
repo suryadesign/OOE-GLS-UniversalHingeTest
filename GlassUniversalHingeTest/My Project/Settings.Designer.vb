@@ -431,7 +431,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("4.695")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("3.4")>  _
         Public Property CrystalGapTheta() As Decimal
             Get
                 Return CType(Me("CrystalGapTheta"),Decimal)
@@ -553,6 +553,18 @@ Namespace My
             Get
                 Return CType(Me("DefaultTempleGapTheta"),Decimal)
             End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("50.2")>  _
+        Public Property IndextoNoon() As Single
+            Get
+                Return CType(Me("IndextoNoon"),Single)
+            End Get
+            Set
+                Me("IndextoNoon") = value
+            End Set
         End Property
     End Class
 End Namespace

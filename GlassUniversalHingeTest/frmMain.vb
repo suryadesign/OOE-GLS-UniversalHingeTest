@@ -217,7 +217,7 @@
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
         UpdateUI("MOVING")
         stpStatusStrip.Text = "Homing..."
-        If Home("X", ErrMsg) Then
+        If Home("X", My.Settings.IndextoNoon, ErrMsg) Then
             stpStatusStrip.Text = "Homed...Idle."
         Else
             stpStatusStrip.Text = "Homing error...Idle." & ErrMsg
@@ -412,6 +412,7 @@
         End If
         Try
             Dim MainDataFile As New System.IO.StreamWriter(MainDataFileFullPath)
+            MainDataFile.WriteLine("Glass Universal Hinge Tester v" & Application.ProductVersion)
             MainDataFile.WriteLine("Device ID:" & ControlChars.Tab & DeviceID)
             MainDataFile.WriteLine("Start Time:" & ControlChars.Tab & T0.ToString("yyyy-MM-dd HH-mm-ss.ff"))
             MainDataFile.WriteLine("Operator:" & ControlChars.Tab & TestOperator)
@@ -485,33 +486,26 @@
 
         'each move will begin with the manipulator against the DUT.  so, we must move the DUT all the way one way, then move the manipulator against the DUT
         'in the case of the bidirectional test, we must first move the DUT all the way to one end of the motion (so that testing is not +/- theta, but + 2 * theta
+
+
         If MotionMode = CWUnidirectional Then   '
-            If MoveActuator("X", -OffsetTheta, False, ErrMsg) Then
-                stpStatusStrip.Text = "Moved to initial position...Idle."
-            Else
-                stpStatusStrip.Text = "Move error...Idle." & ErrMsg
-                ErrMsg = ""
-            End If
+            InitLoc = -OffsetTheta
         ElseIf MotionMode = CCWUnidirectional Then
-            If MoveActuator("X", OffsetTheta, False, ErrMsg) Then
-                stpStatusStrip.Text = "Moved to initial position...Idle."
-            Else
-                stpStatusStrip.Text = "Move error...Idle." & ErrMsg
-                ErrMsg = ""
-            End If
+            InitLoc = OffsetTheta
         ElseIf MotionMode = Bidirectional Then 'if bidirectional move, move to one end of position
-            If MoveActuator("X", -OffsetTheta - RelPos, False, ErrMsg) Then
-                stpStatusStrip.Text = "Moved to initial position...Idle."
-            Else
-                stpStatusStrip.Text = "Move error...Idle." & ErrMsg
-                ErrMsg = ""
-            End If
+            InitLoc = -OffsetTheta - RelPos
         End If
-        InitLoc = GetPos(0, ErrMsg)
-        If InitLoc = ErrSingle Then
-            MsgBox("ERROR:" & ErrMsg)
+        If MoveActuator("X", InitLoc, False, ErrMsg) Then
+            stpStatusStrip.Text = "Moved to initial position...Idle."
+        Else
+            stpStatusStrip.Text = "Move error...Idle." & ErrMsg
             ErrMsg = ""
         End If
+        'InitLoc = GetPos(0, ErrMsg)
+        'If InitLoc = ErrSingle Then
+        '    MsgBox("ERROR:" & ErrMsg)
+        '    ErrMsg = ""
+        'End If
         Do
             lblCurrentCycle.Text = i.ToString("n0")
             'run a cycle depending on the end travel condition
@@ -520,7 +514,7 @@
             ElseIf MotionMode = CCWUnidirectional Then
                 TorqueArray = TwistToPosition(InitLoc, DwellTime, -OffsetTheta - RelPos, ErrMsg)
             ElseIf MotionMode = Bidirectional Then
-                TorqueArray = TwistToPosition(InitLoc, DwellTime, OffsetTheta + 2 * RelPos, ErrMsg)
+                TorqueArray = TwistToPosition(InitLoc, DwellTime, InitLoc + 2 * OffsetTheta + 2 * RelPos, ErrMsg)
             End If
 
             If IsNumeric(TorqueArray) Then
@@ -600,6 +594,17 @@ CycleEnd:
             End If
             i = i + 1
         Loop Until False
+
+        'move DUT to neutral position
+        Dim FinalLoc As Single
+        If MotionMode = CWUnidirectional Then   '
+            FinalLoc = -OffsetTheta
+        ElseIf MotionMode = CCWUnidirectional Then
+            FinalLoc = OffsetTheta
+        ElseIf MotionMode = Bidirectional Then 'if bidirectional move, move to one end of position
+            FinalLoc = InitLoc + 2 * OffsetTheta + RelPos
+        End If
+        MoveActuator("X", FinalLoc, True, ErrMsg)
 
         'move actuator back to original position
         MoveActuator("X", 0, True, ErrMsg)
@@ -775,7 +780,7 @@ CycleEnd:
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
         UpdateUI("MOVING")
         stpStatusStrip.Text = "Homing..."
-        If Home("X", ErrMsg) Then
+        If Home("X", My.Settings.IndextoNoon, ErrMsg) Then
             stpStatusStrip.Text = "Homed...Idle."
         Else
             stpStatusStrip.Text = "Homing error...Idle." & ErrMsg
@@ -803,7 +808,7 @@ CycleEnd:
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
         UpdateUI("MOVING")
         stpStatusStrip.Text = "Homing..."
-        If Home("X", ErrMsg) Then
+        If Home("X", My.Settings.IndextoNoon, ErrMsg) Then
             stpStatusStrip.Text = "Homed...Idle."
         Else
             stpStatusStrip.Text = "Homing error...Idle." & ErrMsg
