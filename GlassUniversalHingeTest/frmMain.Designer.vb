@@ -62,7 +62,7 @@ Partial Class frmMain
         Me.Label6 = New System.Windows.Forms.Label()
         Me.timUpdateUI = New System.Timers.Timer()
         Me.gbxManualControl = New System.Windows.Forms.GroupBox()
-        Me.CmdTempleHingeNeutral = New System.Windows.Forms.Button()
+        Me.CmdFrameHingeNeutral = New System.Windows.Forms.Button()
         Me.cmdCrystalHingeNeutral = New System.Windows.Forms.Button()
         Me.txtThetaPos = New System.Windows.Forms.TextBox()
         Me.cmdMoveRel = New System.Windows.Forms.Button()
@@ -427,7 +427,7 @@ Partial Class frmMain
         '
         'gbxManualControl
         '
-        Me.gbxManualControl.Controls.Add(Me.CmdTempleHingeNeutral)
+        Me.gbxManualControl.Controls.Add(Me.CmdFrameHingeNeutral)
         Me.gbxManualControl.Controls.Add(Me.cmdCrystalHingeNeutral)
         Me.gbxManualControl.Controls.Add(Me.txtThetaPos)
         Me.gbxManualControl.Controls.Add(Me.cmdMoveRel)
@@ -447,14 +447,14 @@ Partial Class frmMain
         Me.gbxManualControl.TabStop = False
         Me.gbxManualControl.Text = "Manual Control"
         '
-        'CmdTempleHingeNeutral
+        'CmdFrameHingeNeutral
         '
-        Me.CmdTempleHingeNeutral.Location = New System.Drawing.Point(184, 120)
-        Me.CmdTempleHingeNeutral.Name = "CmdTempleHingeNeutral"
-        Me.CmdTempleHingeNeutral.Size = New System.Drawing.Size(128, 24)
-        Me.CmdTempleHingeNeutral.TabIndex = 33
-        Me.CmdTempleHingeNeutral.Text = "Temple Hinge Neutral"
-        Me.CmdTempleHingeNeutral.UseVisualStyleBackColor = True
+        Me.CmdFrameHingeNeutral.Location = New System.Drawing.Point(184, 120)
+        Me.CmdFrameHingeNeutral.Name = "CmdFrameHingeNeutral"
+        Me.CmdFrameHingeNeutral.Size = New System.Drawing.Size(128, 24)
+        Me.CmdFrameHingeNeutral.TabIndex = 33
+        Me.CmdFrameHingeNeutral.Text = "Frame Hinge Neutral"
+        Me.CmdFrameHingeNeutral.UseVisualStyleBackColor = True
         '
         'cmdCrystalHingeNeutral
         '
@@ -676,7 +676,7 @@ Partial Class frmMain
     Friend WithEvents chtTorqueVsDisp As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents pbrTorque As System.Windows.Forms.ProgressBar
     Friend WithEvents cmdSendConfig As System.Windows.Forms.Button
-    Friend WithEvents CmdTempleHingeNeutral As System.Windows.Forms.Button
+    Friend WithEvents CmdFrameHingeNeutral As System.Windows.Forms.Button
     Friend WithEvents cmdCrystalHingeNeutral As System.Windows.Forms.Button
     Friend WithEvents picDriveEnabled As System.Windows.Forms.PictureBox
     Friend WithEvents picLidStatus As System.Windows.Forms.PictureBox

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ACSIP" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">10.0.0.102</Value>
+      <Value Profile="(Default)">10.0.0.103</Value>
     </Setting>
     <Setting Name="AIRes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">32768</Value>
@@ -96,16 +96,16 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="CrystalNeutralTheta" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">88.105</Value>
+      <Value Profile="(Default)">88.7</Value>
     </Setting>
-    <Setting Name="TempleNeutralTheta" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-17.48</Value>
+    <Setting Name="FrameNeutralTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-18.96</Value>
     </Setting>
     <Setting Name="CrystalGapTheta" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3.4</Value>
     </Setting>
-    <Setting Name="TempleGapTheta" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">4.05</Value>
+    <Setting Name="FrameGapTheta" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2.7</Value>
     </Setting>
     <Setting Name="LastDeviceType" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -131,17 +131,23 @@
     <Setting Name="DefaultCrystalNeutralTheta" Type="System.Decimal" Scope="Application">
       <Value Profile="(Default)">88.105</Value>
     </Setting>
-    <Setting Name="DefaultTempleNeutralTheta" Type="System.Decimal" Scope="Application">
+    <Setting Name="DefaultFrameNeutralTheta" Type="System.Decimal" Scope="Application">
       <Value Profile="(Default)">-17.48</Value>
     </Setting>
     <Setting Name="DefaultCrystalGapTheta" Type="System.Decimal" Scope="Application">
       <Value Profile="(Default)">4.695</Value>
     </Setting>
-    <Setting Name="DefaultTempleGapTheta" Type="System.Decimal" Scope="Application">
+    <Setting Name="DefaultFrameGapTheta" Type="System.Decimal" Scope="Application">
       <Value Profile="(Default)">4.05</Value>
     </Setting>
     <Setting Name="IndextoNoon" Type="System.Single" Scope="User">
       <Value Profile="(Default)">50.2</Value>
+    </Setting>
+    <Setting Name="DefaultFrameRelPos" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">85</Value>
+    </Setting>
+    <Setting Name="DefaultCrystalRelPos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
   </Settings>
 </SettingsFile>

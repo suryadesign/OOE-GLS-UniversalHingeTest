@@ -3,7 +3,7 @@
     Public Const CCWUnidirectional As Integer = 1
     Public Const Bidirectional As Integer = 2
     Public Const CrystalHinge As Integer = 0
-    Public Const TempleHinge As Integer = 1
+    Public Const FrameHinge As Integer = 1
     Public Const DAQNever As Integer = 0
     Public Const DAQEvery1 As Integer = 1
     Public Const DAQEvery10 As Integer = 2
@@ -458,7 +458,7 @@
             End If
         End If
 
-        
+
         Dim i As Integer = 1
         Dim TorqueArray
         If LimitTorque Then
@@ -478,8 +478,8 @@
         Dim OffsetTheta As Single           'this is the angular spacing between the manipulators and DUT when the DUT is centered between the manipulators
         If DeviceType = CrystalHinge Then
             OffsetTheta = My.Settings.CrystalGapTheta
-        ElseIf DeviceType = TempleHinge Then
-            OffsetTheta = My.Settings.TempleGapTheta
+        ElseIf DeviceType = FrameHinge Then
+            OffsetTheta = My.Settings.FrameGapTheta
         Else
             OffsetTheta = 0
         End If
@@ -796,7 +796,7 @@ CycleEnd:
         UpdateUI("IDLE")
         System.Windows.Forms.Cursor.Current = Cursors.Default
     End Sub
-    Private Sub CmdTempleHingeNeutral_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdTempleHingeNeutral.Click
+    Private Sub CmdFrameHingeNeutral_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CmdFrameHingeNeutral.Click
         Dim ErrMsg As String = ""
         Do While GetLidStatus(ErrMsg) = 0
             If MsgBox("Lid must be up.  Ensure that lid is up and click OK to continue.  Click Cancel to abort move.", MsgBoxStyle.OkCancel) = MsgBoxResult.Cancel Then
@@ -815,9 +815,9 @@ CycleEnd:
         End If
         ErrMsg = ""
         stpStatusStrip.Text = "Moving..."
-        Dim X As Single = My.Settings.TempleNeutralTheta
+        Dim X As Single = My.Settings.FrameNeutralTheta
         If MoveActuator("X", X, True, ErrMsg) Then
-            stpStatusStrip.Text = "Moved to neutral position for temple hinge...Idle."
+            stpStatusStrip.Text = "Moved to neutral position for Frame hinge...Idle."
         Else
             stpStatusStrip.Text = "Move error...Idle." & ErrMsg
         End If
@@ -832,9 +832,9 @@ CycleEnd:
         My.Settings.JerkTheta = My.Settings.DefaultJerkTheta
         My.Settings.KDecTheta = My.Settings.DefaultKDecTheta
         My.Settings.CrystalNeutralTheta = My.Settings.DefaultCrystalNeutralTheta
-        My.Settings.TempleNeutralTheta = My.Settings.DefaultTempleNeutralTheta
+        My.Settings.FrameNeutralTheta = My.Settings.DefaultFrameNeutralTheta
         My.Settings.CrystalGapTheta = My.Settings.DefaultCrystalGapTheta
-        My.Settings.TempleGapTheta = My.Settings.DefaultTempleGapTheta
+        My.Settings.FrameGapTheta = My.Settings.DefaultFrameGapTheta
         If SendMotionConfig("X", My.Settings.VelTheta, My.Settings.AccTheta, My.Settings.DecTheta, My.Settings.JerkTheta, My.Settings.KDecTheta, My.Settings.HomeVelTheta, ErrMsg) Then
             If SetTorqueLimit(0, MaxTorque, ErrMsg) Then
                 UpdateUI("IDLE")

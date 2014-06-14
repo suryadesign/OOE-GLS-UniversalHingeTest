@@ -14,8 +14,8 @@
         Select Case My.Settings.LastDeviceType
             Case frmMain.CrystalHinge
                 rdoCrystalHinge.Checked = True
-            Case frmMain.TempleHinge
-                rdoTempleHinge.Checked = True
+            Case frmMain.FrameHinge
+                rdoFrameHinge.Checked = True
         End Select
         Select Case My.Settings.LastMotionMode
             Case frmMain.CWUnidirectional
@@ -61,7 +61,7 @@
         My.Settings.LastDwellTime = numDwellTime.Value
         My.Settings.LastZeroPosition = chkZeroPosition.Checked
         If rdoCrystalHinge.Checked Then My.Settings.LastDeviceType = frmMain.CrystalHinge
-        If rdoTempleHinge.Checked Then My.Settings.LastDeviceType = frmMain.TempleHinge
+        If rdoFrameHinge.Checked Then My.Settings.LastDeviceType = frmMain.FrameHinge
         If rdoUnidirectionalCW.Checked Then My.Settings.LastMotionMode = frmMain.CWUnidirectional
         If rdoUnidirectionalCCW.Checked Then My.Settings.LastMotionMode = frmMain.CCWUnidirectional
         If rdoBidirectional.Checked Then My.Settings.LastMotionMode = frmMain.Bidirectional
@@ -89,7 +89,7 @@
         frmMain.DwellTime = numDwellTime.Value
         frmMain.ZeroPositionBeforeTest = chkZeroPosition.Checked
         If rdoCrystalHinge.Checked Then frmMain.DeviceType = frmMain.CrystalHinge
-        If rdoTempleHinge.Checked Then frmMain.DeviceType = frmMain.TempleHinge
+        If rdoFrameHinge.Checked Then frmMain.DeviceType = frmMain.FrameHinge
 
         If rdoUnidirectionalCW.Checked Then frmMain.MotionMode = frmMain.CWUnidirectional
         If rdoUnidirectionalCCW.Checked Then frmMain.MotionMode = frmMain.CCWUnidirectional
@@ -165,4 +165,13 @@
     End Sub
 
 
+    Private Sub cmdLoadCrystalDefaults_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdLoadCrystalDefaults.Click
+        rdoCrystalHinge.Checked = True
+        txtRelPos.Text = My.Settings.DefaultCrystalRelPos
+    End Sub
+
+    Private Sub cmdLoadFrameDefaults_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdLoadFrameDefaults.Click
+        rdoFrameHinge.Checked = True
+        txtRelPos.Text = My.Settings.DefaultFrameRelPos
+    End Sub
 End Class

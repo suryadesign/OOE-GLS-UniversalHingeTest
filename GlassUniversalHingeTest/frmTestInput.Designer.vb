@@ -45,7 +45,7 @@ Partial Class frmTestInput
         Me.rdoDistance = New System.Windows.Forms.RadioButton()
         Me.rdoDisplacement = New System.Windows.Forms.RadioButton()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.rdoTempleHinge = New System.Windows.Forms.RadioButton()
+        Me.rdoFrameHinge = New System.Windows.Forms.RadioButton()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.rdoCrystalHinge = New System.Windows.Forms.RadioButton()
         Me.txtTorqueLimit = New System.Windows.Forms.TextBox()
@@ -65,9 +65,11 @@ Partial Class frmTestInput
         Me.rdoDAQEvery100 = New System.Windows.Forms.RadioButton()
         Me.rdoDAQEvery10 = New System.Windows.Forms.RadioButton()
         Me.rdoDAQEvery1 = New System.Windows.Forms.RadioButton()
+        Me.cmdShowFolderDialog = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtDataFilePath = New System.Windows.Forms.TextBox()
-        Me.cmdShowFolderDialog = New System.Windows.Forms.Button()
+        Me.cmdLoadCrystalDefaults = New System.Windows.Forms.Button()
+        Me.cmdLoadFrameDefaults = New System.Windows.Forms.Button()
         CType(Me.txtNumCycles, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.txtFixtureErrorCyles, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,7 +94,7 @@ Partial Class frmTestInput
         '
         'cmdStart
         '
-        Me.cmdStart.Location = New System.Drawing.Point(296, 304)
+        Me.cmdStart.Location = New System.Drawing.Point(296, 344)
         Me.cmdStart.Name = "cmdStart"
         Me.cmdStart.Size = New System.Drawing.Size(144, 24)
         Me.cmdStart.TabIndex = 5
@@ -102,7 +104,7 @@ Partial Class frmTestInput
         'cmdCancel
         '
         Me.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdCancel.Location = New System.Drawing.Point(448, 304)
+        Me.cmdCancel.Location = New System.Drawing.Point(448, 344)
         Me.cmdCancel.Name = "cmdCancel"
         Me.cmdCancel.Size = New System.Drawing.Size(144, 24)
         Me.cmdCancel.TabIndex = 6
@@ -275,7 +277,7 @@ Partial Class frmTestInput
         '
         'GroupBox5
         '
-        Me.GroupBox5.Controls.Add(Me.rdoTempleHinge)
+        Me.GroupBox5.Controls.Add(Me.rdoFrameHinge)
         Me.GroupBox5.Controls.Add(Me.Label9)
         Me.GroupBox5.Controls.Add(Me.rdoCrystalHinge)
         Me.GroupBox5.Controls.Add(Me.txtTorqueLimit)
@@ -294,16 +296,16 @@ Partial Class frmTestInput
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "General Test Info/Options"
         '
-        'rdoTempleHinge
+        'rdoFrameHinge
         '
-        Me.rdoTempleHinge.AutoSize = True
-        Me.rdoTempleHinge.Location = New System.Drawing.Point(128, 160)
-        Me.rdoTempleHinge.Name = "rdoTempleHinge"
-        Me.rdoTempleHinge.Size = New System.Drawing.Size(91, 17)
-        Me.rdoTempleHinge.TabIndex = 52
-        Me.rdoTempleHinge.TabStop = True
-        Me.rdoTempleHinge.Text = "Temple Hinge"
-        Me.rdoTempleHinge.UseVisualStyleBackColor = True
+        Me.rdoFrameHinge.AutoSize = True
+        Me.rdoFrameHinge.Location = New System.Drawing.Point(128, 160)
+        Me.rdoFrameHinge.Name = "rdoFrameHinge"
+        Me.rdoFrameHinge.Size = New System.Drawing.Size(85, 17)
+        Me.rdoFrameHinge.TabIndex = 52
+        Me.rdoFrameHinge.TabStop = True
+        Me.rdoFrameHinge.Text = "Frame Hinge"
+        Me.rdoFrameHinge.UseVisualStyleBackColor = True
         '
         'Label9
         '
@@ -505,6 +507,16 @@ Partial Class frmTestInput
         Me.rdoDAQEvery1.Text = "Every Cycle"
         Me.rdoDAQEvery1.UseVisualStyleBackColor = True
         '
+        'cmdShowFolderDialog
+        '
+        Me.cmdShowFolderDialog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.cmdShowFolderDialog.Image = CType(resources.GetObject("cmdShowFolderDialog.Image"), System.Drawing.Image)
+        Me.cmdShowFolderDialog.Location = New System.Drawing.Point(240, 136)
+        Me.cmdShowFolderDialog.Name = "cmdShowFolderDialog"
+        Me.cmdShowFolderDialog.Size = New System.Drawing.Size(24, 24)
+        Me.cmdShowFolderDialog.TabIndex = 7
+        Me.cmdShowFolderDialog.UseVisualStyleBackColor = True
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -521,15 +533,23 @@ Partial Class frmTestInput
         Me.txtDataFilePath.Size = New System.Drawing.Size(232, 20)
         Me.txtDataFilePath.TabIndex = 6
         '
-        'cmdShowFolderDialog
+        'cmdLoadCrystalDefaults
         '
-        Me.cmdShowFolderDialog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.cmdShowFolderDialog.Image = CType(resources.GetObject("cmdShowFolderDialog.Image"), System.Drawing.Image)
-        Me.cmdShowFolderDialog.Location = New System.Drawing.Point(240, 136)
-        Me.cmdShowFolderDialog.Name = "cmdShowFolderDialog"
-        Me.cmdShowFolderDialog.Size = New System.Drawing.Size(24, 24)
-        Me.cmdShowFolderDialog.TabIndex = 7
-        Me.cmdShowFolderDialog.UseVisualStyleBackColor = True
+        Me.cmdLoadCrystalDefaults.Location = New System.Drawing.Point(296, 312)
+        Me.cmdLoadCrystalDefaults.Name = "cmdLoadCrystalDefaults"
+        Me.cmdLoadCrystalDefaults.Size = New System.Drawing.Size(144, 24)
+        Me.cmdLoadCrystalDefaults.TabIndex = 8
+        Me.cmdLoadCrystalDefaults.Text = "Load Crystal Defaults"
+        Me.cmdLoadCrystalDefaults.UseVisualStyleBackColor = True
+        '
+        'cmdLoadFrameDefaults
+        '
+        Me.cmdLoadFrameDefaults.Location = New System.Drawing.Point(448, 312)
+        Me.cmdLoadFrameDefaults.Name = "cmdLoadFrameDefaults"
+        Me.cmdLoadFrameDefaults.Size = New System.Drawing.Size(144, 24)
+        Me.cmdLoadFrameDefaults.TabIndex = 9
+        Me.cmdLoadFrameDefaults.Text = "Load Frame Defaults"
+        Me.cmdLoadFrameDefaults.UseVisualStyleBackColor = True
         '
         'frmTestInput
         '
@@ -538,7 +558,9 @@ Partial Class frmTestInput
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.CancelButton = Me.cmdCancel
-        Me.ClientSize = New System.Drawing.Size(599, 399)
+        Me.ClientSize = New System.Drawing.Size(599, 375)
+        Me.Controls.Add(Me.cmdLoadFrameDefaults)
+        Me.Controls.Add(Me.cmdLoadCrystalDefaults)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.GroupBox4)
@@ -608,7 +630,9 @@ Partial Class frmTestInput
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtDataFilePath As System.Windows.Forms.TextBox
     Friend WithEvents rdoUnidirectionalCCW As System.Windows.Forms.RadioButton
-    Friend WithEvents rdoTempleHinge As System.Windows.Forms.RadioButton
+    Friend WithEvents rdoFrameHinge As System.Windows.Forms.RadioButton
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents rdoCrystalHinge As System.Windows.Forms.RadioButton
+    Friend WithEvents cmdLoadCrystalDefaults As System.Windows.Forms.Button
+    Friend WithEvents cmdLoadFrameDefaults As System.Windows.Forms.Button
 End Class
