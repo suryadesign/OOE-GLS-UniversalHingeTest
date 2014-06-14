@@ -360,18 +360,6 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property LastZeroPosition() As Boolean
-            Get
-                Return CType(Me("LastZeroPosition"),Boolean)
-            End Get
-            Set
-                Me("LastZeroPosition") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property LastLimitTorque() As Boolean
             Get
                 Return CType(Me("LastLimitTorque"),Boolean)

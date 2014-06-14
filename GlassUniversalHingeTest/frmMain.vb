@@ -18,7 +18,7 @@
     Public DwellTime, NumCycles, ConsecFailLimit, TotalFailLimit, FixtureFailureLimit, DAQFrequency, GraphDisplay, DeviceType, MotionMode As Integer
     ' graphdisplay indicates whether graphing vs displacement or distance
     Public RelPos, TorqueLimit As Single
-    Public EndOnCycles, EndOnFixtureFailLimit, TimedOut, ZeroPositionBeforeTest, LimitTorque As Boolean
+    Public EndOnCycles, EndOnFixtureFailLimit, TimedOut, LimitTorque As Boolean
 
     Public PauseFlag As Boolean = False     'flag for if user pauses testing
     Public StopFlag As Boolean = False      'flag for if user aborts testing
@@ -353,6 +353,8 @@
         'starts the button testing
         stpStatusStrip.Text = "Waiting for user input..."
         Dim frmDialog As New frmTestInput
+        frmDialog.rdoCrystalHinge.Checked = True
+        frmDialog.txtRelPos.Text = My.Settings.DefaultCrystalRelPos
         If frmDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
             stpStatusStrip.Text = "Test running..."
             RunButtonTest()
@@ -366,6 +368,7 @@
         End If
         frmDialog.Dispose()
     End Sub
+
     Private Sub cmdPauseResume_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdPauseResume.Click
         PauseFlag = Not PauseFlag
         If PauseFlag Then
@@ -419,7 +422,6 @@
             MainDataFile.WriteLine("Fixture ID:" & ControlChars.Tab & My.Settings.ACSIP)
             MainDataFile.WriteLine("Dwell Time [msec]:" & ControlChars.Tab & DwellTime)
             MainDataFile.WriteLine("Torque Limit [kgf-cm]:" & ControlChars.Tab & IIf(LimitTorque, TorqueLimit.ToString("n1"), MaxTorque.ToString("n1")))
-            MainDataFile.WriteLine("Zero Position Before Test:" & ControlChars.Tab & IIf(ZeroPositionBeforeTest, "Yes", "No"))
             MainDataFile.WriteLine("Travel End Position:" & ControlChars.Tab & "Relative Postion (" & RelPos.ToString("n3") & " °)")
             MainDataFile.WriteLine("Test End Conditions:")
             MainDataFile.WriteLine(ControlChars.Tab & "Number of Cycles:" & ControlChars.Tab & IIf(EndOnCycles, NumCycles, "n/a"))
@@ -450,14 +452,12 @@
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
-        If ZeroPositionBeforeTest Then
-            If ZeroPos(0, ErrMsg) Then
-            Else
-                stpStatusStrip.Text = ErrMsg
-                ErrMsg = ""
-            End If
-        End If
 
+        If ZeroPos(0, ErrMsg) Then
+        Else
+            stpStatusStrip.Text = ErrMsg
+            ErrMsg = ""
+        End If
 
         Dim i As Integer = 1
         Dim TorqueArray
@@ -847,4 +847,6 @@ CycleEnd:
             MsgBox("Invalid motion parameters!  Check configuration and retry." & Chr(10) & ErrMsg)
         End If
     End Sub
+
+    
 End Class

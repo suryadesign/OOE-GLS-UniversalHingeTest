@@ -83,9 +83,6 @@
     <Setting Name="KDecTheta" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3600</Value>
     </Setting>
-    <Setting Name="LastZeroPosition" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="LastLimitTorque" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>

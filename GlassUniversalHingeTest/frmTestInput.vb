@@ -10,7 +10,6 @@
         txtDevID.Text = My.Settings.LastDeviceID
         txtOperator.Text = My.Settings.LastOperator
         numDwellTime.Value = My.Settings.LastDwellTime
-        chkZeroPosition.Checked = My.Settings.LastZeroPosition
         Select Case My.Settings.LastDeviceType
             Case frmMain.CrystalHinge
                 rdoCrystalHinge.Checked = True
@@ -59,7 +58,6 @@
         My.Settings.LastDeviceID = txtDevID.Text
         My.Settings.LastOperator = txtOperator.Text
         My.Settings.LastDwellTime = numDwellTime.Value
-        My.Settings.LastZeroPosition = chkZeroPosition.Checked
         If rdoCrystalHinge.Checked Then My.Settings.LastDeviceType = frmMain.CrystalHinge
         If rdoFrameHinge.Checked Then My.Settings.LastDeviceType = frmMain.FrameHinge
         If rdoUnidirectionalCW.Checked Then My.Settings.LastMotionMode = frmMain.CWUnidirectional
@@ -87,7 +85,6 @@
         frmMain.DeviceID = txtDevID.Text
         frmMain.TestOperator = txtOperator.Text
         frmMain.DwellTime = numDwellTime.Value
-        frmMain.ZeroPositionBeforeTest = chkZeroPosition.Checked
         If rdoCrystalHinge.Checked Then frmMain.DeviceType = frmMain.CrystalHinge
         If rdoFrameHinge.Checked Then frmMain.DeviceType = frmMain.FrameHinge
 
@@ -167,11 +164,13 @@
 
     Private Sub cmdLoadCrystalDefaults_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdLoadCrystalDefaults.Click
         rdoCrystalHinge.Checked = True
+        rdoBidirectional.Checked = True
         txtRelPos.Text = My.Settings.DefaultCrystalRelPos
     End Sub
 
     Private Sub cmdLoadFrameDefaults_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdLoadFrameDefaults.Click
         rdoFrameHinge.Checked = True
+        rdoUnidirectionalCW.Checked = True
         txtRelPos.Text = My.Settings.DefaultFrameRelPos
     End Sub
 End Class

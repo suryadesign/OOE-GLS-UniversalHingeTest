@@ -50,7 +50,6 @@ Partial Class frmTestInput
         Me.rdoCrystalHinge = New System.Windows.Forms.RadioButton()
         Me.txtTorqueLimit = New System.Windows.Forms.TextBox()
         Me.chkLimitTorque = New System.Windows.Forms.CheckBox()
-        Me.chkZeroPosition = New System.Windows.Forms.CheckBox()
         Me.numDwellTime = New System.Windows.Forms.NumericUpDown()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -94,7 +93,7 @@ Partial Class frmTestInput
         '
         'cmdStart
         '
-        Me.cmdStart.Location = New System.Drawing.Point(296, 344)
+        Me.cmdStart.Location = New System.Drawing.Point(296, 336)
         Me.cmdStart.Name = "cmdStart"
         Me.cmdStart.Size = New System.Drawing.Size(144, 24)
         Me.cmdStart.TabIndex = 5
@@ -104,7 +103,7 @@ Partial Class frmTestInput
         'cmdCancel
         '
         Me.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdCancel.Location = New System.Drawing.Point(448, 344)
+        Me.cmdCancel.Location = New System.Drawing.Point(448, 336)
         Me.cmdCancel.Name = "cmdCancel"
         Me.cmdCancel.Size = New System.Drawing.Size(144, 24)
         Me.cmdCancel.TabIndex = 6
@@ -282,7 +281,6 @@ Partial Class frmTestInput
         Me.GroupBox5.Controls.Add(Me.rdoCrystalHinge)
         Me.GroupBox5.Controls.Add(Me.txtTorqueLimit)
         Me.GroupBox5.Controls.Add(Me.chkLimitTorque)
-        Me.GroupBox5.Controls.Add(Me.chkZeroPosition)
         Me.GroupBox5.Controls.Add(Me.numDwellTime)
         Me.GroupBox5.Controls.Add(Me.Label5)
         Me.GroupBox5.Controls.Add(Me.Label6)
@@ -291,7 +289,7 @@ Partial Class frmTestInput
         Me.GroupBox5.Controls.Add(Me.txtDevID)
         Me.GroupBox5.Location = New System.Drawing.Point(8, 8)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(280, 184)
+        Me.GroupBox5.Size = New System.Drawing.Size(280, 168)
         Me.GroupBox5.TabIndex = 0
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "General Test Info/Options"
@@ -299,7 +297,7 @@ Partial Class frmTestInput
         'rdoFrameHinge
         '
         Me.rdoFrameHinge.AutoSize = True
-        Me.rdoFrameHinge.Location = New System.Drawing.Point(128, 160)
+        Me.rdoFrameHinge.Location = New System.Drawing.Point(128, 136)
         Me.rdoFrameHinge.Name = "rdoFrameHinge"
         Me.rdoFrameHinge.Size = New System.Drawing.Size(85, 17)
         Me.rdoFrameHinge.TabIndex = 52
@@ -310,7 +308,7 @@ Partial Class frmTestInput
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(8, 144)
+        Me.Label9.Location = New System.Drawing.Point(8, 120)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(68, 13)
         Me.Label9.TabIndex = 51
@@ -319,7 +317,7 @@ Partial Class frmTestInput
         'rdoCrystalHinge
         '
         Me.rdoCrystalHinge.AutoSize = True
-        Me.rdoCrystalHinge.Location = New System.Drawing.Point(16, 160)
+        Me.rdoCrystalHinge.Location = New System.Drawing.Point(16, 136)
         Me.rdoCrystalHinge.Name = "rdoCrystalHinge"
         Me.rdoCrystalHinge.Size = New System.Drawing.Size(87, 17)
         Me.rdoCrystalHinge.TabIndex = 50
@@ -346,19 +344,6 @@ Partial Class frmTestInput
         Me.chkLimitTorque.TabIndex = 3
         Me.chkLimitTorque.Text = "Limit torque [kgf-cm]"
         Me.chkLimitTorque.UseVisualStyleBackColor = True
-        '
-        'chkZeroPosition
-        '
-        Me.chkZeroPosition.AutoSize = True
-        Me.chkZeroPosition.Checked = True
-        Me.chkZeroPosition.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkZeroPosition.Enabled = False
-        Me.chkZeroPosition.Location = New System.Drawing.Point(8, 120)
-        Me.chkZeroPosition.Name = "chkZeroPosition"
-        Me.chkZeroPosition.Size = New System.Drawing.Size(140, 17)
-        Me.chkZeroPosition.TabIndex = 5
-        Me.chkZeroPosition.Text = "Zero position before test"
-        Me.chkZeroPosition.UseVisualStyleBackColor = True
         '
         'numDwellTime
         '
@@ -425,7 +410,7 @@ Partial Class frmTestInput
         Me.GroupBox3.Controls.Add(Me.cmdShowFolderDialog)
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.txtDataFilePath)
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 200)
+        Me.GroupBox3.Location = New System.Drawing.Point(8, 192)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(280, 168)
         Me.GroupBox3.TabIndex = 7
@@ -535,7 +520,7 @@ Partial Class frmTestInput
         '
         'cmdLoadCrystalDefaults
         '
-        Me.cmdLoadCrystalDefaults.Location = New System.Drawing.Point(296, 312)
+        Me.cmdLoadCrystalDefaults.Location = New System.Drawing.Point(296, 304)
         Me.cmdLoadCrystalDefaults.Name = "cmdLoadCrystalDefaults"
         Me.cmdLoadCrystalDefaults.Size = New System.Drawing.Size(144, 24)
         Me.cmdLoadCrystalDefaults.TabIndex = 8
@@ -544,7 +529,7 @@ Partial Class frmTestInput
         '
         'cmdLoadFrameDefaults
         '
-        Me.cmdLoadFrameDefaults.Location = New System.Drawing.Point(448, 312)
+        Me.cmdLoadFrameDefaults.Location = New System.Drawing.Point(448, 304)
         Me.cmdLoadFrameDefaults.Name = "cmdLoadFrameDefaults"
         Me.cmdLoadFrameDefaults.Size = New System.Drawing.Size(144, 24)
         Me.cmdLoadFrameDefaults.TabIndex = 9
@@ -606,7 +591,6 @@ Partial Class frmTestInput
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents txtTorqueLimit As System.Windows.Forms.TextBox
     Friend WithEvents chkLimitTorque As System.Windows.Forms.CheckBox
-    Friend WithEvents chkZeroPosition As System.Windows.Forms.CheckBox
     Friend WithEvents numDwellTime As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
