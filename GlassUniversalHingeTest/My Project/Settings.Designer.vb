@@ -65,7 +65,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("32768")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("4096")>  _
         Public ReadOnly Property AIRes() As String
             Get
                 Return CType(Me("AIRes"),String)
@@ -509,7 +509,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("88.105")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("88.7")>  _
         Public ReadOnly Property DefaultCrystalNeutralTheta() As Decimal
             Get
                 Return CType(Me("DefaultCrystalNeutralTheta"),Decimal)
@@ -518,7 +518,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("-17.48")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("-18.96")>  _
         Public ReadOnly Property DefaultFrameNeutralTheta() As Decimal
             Get
                 Return CType(Me("DefaultFrameNeutralTheta"),Decimal)
@@ -527,7 +527,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("4.695")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("3.4")>  _
         Public ReadOnly Property DefaultCrystalGapTheta() As Decimal
             Get
                 Return CType(Me("DefaultCrystalGapTheta"),Decimal)
@@ -536,7 +536,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("4.05")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2.7")>  _
         Public ReadOnly Property DefaultFrameGapTheta() As Decimal
             Get
                 Return CType(Me("DefaultFrameGapTheta"),Decimal)

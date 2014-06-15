@@ -368,7 +368,6 @@
         End If
         frmDialog.Dispose()
     End Sub
-
     Private Sub cmdPauseResume_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdPauseResume.Click
         PauseFlag = Not PauseFlag
         If PauseFlag Then
@@ -395,7 +394,7 @@
         Dim SuccessfulCycles As Integer = 0
         Dim ErrMsg As String = ""
         Dim T0 As Date = Now
-        Dim TorqueMax, InitLoc As Single 'max force attained and initial position of actuator
+        Dim CWTorqueMax, CCWTorqueMax, InitLoc As Single 'max force attained and initial position of actuator
         Dim MainDataFileFullPath As String = DataFilePath & "\" & DeviceID & " " & T0.ToString("yyyy-MM-dd HH-mm-ss.ff") & "-MAIN.txt"
         Dim TorqueDataFileFullPath As String = DataFilePath & "\" & DeviceID & " " & T0.ToString("yyyy-MM-dd HH-mm-ss.ff") & "-TORQUE.txt"
         'update UI
@@ -433,7 +432,7 @@
             MainDataFile.WriteLine(ControlChars.Tab & "Jerk [°/s^3]: " & ControlChars.Tab & My.Settings.JerkTheta.ToString("n0"))
             MainDataFile.WriteLine(ControlChars.Tab & "Kill Decel [°/s^2]:" & ControlChars.Tab & My.Settings.KDecTheta.ToString("n0"))
             MainDataFile.WriteLine("")
-            MainDataFile.WriteLine("Time/Date" & ControlChars.Tab & "Cycle Number" & ControlChars.Tab & "Max Torque (kgf-cm)" & ControlChars.Tab & "Status")
+            MainDataFile.WriteLine("Time/Date" & ControlChars.Tab & "Cycle Number" & ControlChars.Tab & "Max CW Torque (kgf-cm)" & ControlChars.Tab & "Max CCW Torque (kgf-cm)" & ControlChars.Tab & "Status")
             MainDataFile.Flush()
             MainDataFile.Close()
             MainDataFile.Dispose()
@@ -529,7 +528,7 @@
                 chtTorqueVsDisp.ChartAreas(0).Axes(1).IntervalAutoMode = DataVisualization.Charting.IntervalAutoMode.FixedCount
             End If
             'add a new plot
-            ProcessAndPlotTorqueData(TorqueArray, i, TorqueMax)
+            ProcessAndPlotTorqueData(TorqueArray, i, CWTorqueMax, CCWTorqueMax)
             Do While PauseFlag And Not StopFlag
                 Application.DoEvents()
             Loop
@@ -545,7 +544,7 @@ CycleEnd:
             'write line of data
             Try
                 Dim MainDataFile As New System.IO.StreamWriter(MainDataFileFullPath, True)
-                MainDataFile.WriteLine(Now.ToString("yyyy-MM-dd HH-mm-ss.ff") & ControlChars.Tab & i & ControlChars.Tab & IIf(IsNumeric(TorqueArray), "n/a", TorqueMax.ToString("n1")) & ControlChars.Tab & stpStatusStrip.Text)
+                MainDataFile.WriteLine(Now.ToString("yyyy-MM-dd HH-mm-ss.ff") & ControlChars.Tab & i & ControlChars.Tab & IIf(IsNumeric(TorqueArray), "n/a" & ControlChars.Tab & "n/a", CWTorqueMax.ToString("n2") & ControlChars.Tab & CCWTorqueMax.ToString("n2")) & ControlChars.Tab & stpStatusStrip.Text)
                 MainDataFile.Flush()
                 MainDataFile.Close()
                 MainDataFile.Dispose()
@@ -555,18 +554,18 @@ CycleEnd:
             Select Case DAQFrequency
                 Case 0  'never
                 Case 1  'every 1
-                    RecordTorqueData(TorqueArray, i, TorqueMax, TorqueDataFileFullPath)
+                    RecordTorqueData(TorqueArray, i, TorqueDataFileFullPath)
                 Case 2  'every 10
                     If ((i - 1) Mod 10) = 0 Then
-                        RecordTorqueData(TorqueArray, i, TorqueMax, TorqueDataFileFullPath)
+                        RecordTorqueData(TorqueArray, i, TorqueDataFileFullPath)
                     End If
                 Case 3  'every 100
                     If ((i - 1) Mod 100) = 0 Then
-                        RecordTorqueData(TorqueArray, i, TorqueMax, TorqueDataFileFullPath)
+                        RecordTorqueData(TorqueArray, i, TorqueDataFileFullPath)
                     End If
                 Case 4  'every 1000
                     If ((i - 1) Mod 1000) = 0 Then
-                        RecordTorqueData(TorqueArray, i, TorqueMax, TorqueDataFileFullPath)
+                        RecordTorqueData(TorqueArray, i, TorqueDataFileFullPath)
                     End If
                 Case 5  'progressive interval
                     If i <= 10 Or _
@@ -577,7 +576,7 @@ CycleEnd:
                         (i <= 1000000) And (((i - 1) Mod 100000) = 0) Or _
                         (i <= 10000000) And (((i - 1) Mod 1000000) = 0) Or _
                         (i <= 100000000) And (((i - 1) Mod 10000000) = 0) Then
-                        RecordTorqueData(TorqueArray, i, TorqueMax, TorqueDataFileFullPath)
+                        RecordTorqueData(TorqueArray, i, TorqueDataFileFullPath)
                     End If
             End Select
             'check for excessive failures
@@ -631,8 +630,9 @@ CycleEnd:
         UpdateUI("IDLE")
 
     End Sub
-    Sub ProcessAndPlotTorqueData(ByVal TorqueArray As Object, ByVal i As Integer, ByRef Torquemax As Single)
-        Torquemax = Single.MinValue
+    Sub ProcessAndPlotTorqueData(ByVal TorqueArray As Object, ByVal i As Integer, ByRef CWTorquemax As Single, ByRef CCWTorqueMax As Single)
+        CWTorquemax = Single.MinValue
+        CCWTorqueMax = Single.MaxValue
         Dim ThetaMax = Single.MinValue
         Dim Torque As Single
         Dim Dist As Single = 0
@@ -643,10 +643,11 @@ CycleEnd:
         'add the data to the series
         If GraphDisplay = 0 Then            'if plotting vs displacement
             For j = 0 To TorqueDataPoints - 1
-                Torque = -TorqueArray(j, 1) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm
+                Torque = (My.Settings.AIRes - TorqueArray(j, 1)) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm
                 chtTorqueVsDisp.Series("Cycle").Points.AddXY(TorqueArray(j, 0), Torque)
-                If Torque > Torquemax Then Torquemax = Torque
-                If TorqueArray(j, 0) > Torquemax Then Torquemax = TorqueArray(j, 0)
+                If Torque > CWTorquemax Then CWTorquemax = Torque
+                If Torque < CCWTorqueMax Then CCWTorqueMax = Torque
+                If TorqueArray(j, 0) > ThetaMax Then ThetaMax = TorqueArray(j, 0)
             Next
         Else                                'else plotting vs distance
             For j = 0 To TorqueDataPoints - 1
@@ -657,7 +658,8 @@ CycleEnd:
                     Dist = Dist + Math.Abs(TorqueArray(j, 0) - TorqueArray(j - 1, 0))
                 End If
                 chtTorqueVsDisp.Series("Cycle").Points.AddXY(Dist, Torque)
-                If Torque > Torquemax Then Torquemax = Torque
+                If Torque > CWTorquemax Then CWTorquemax = Torque
+                If Torque < CCWTorqueMax Then CCWTorqueMax = Torque
                 If Dist > ThetaMax Then ThetaMax = Dist
             Next
         End If
@@ -722,7 +724,7 @@ CycleEnd:
         End If
 
     End Sub
-    Sub RecordTorqueData(ByVal TorqueArray As Object, ByVal i As Integer, ByRef Torquemax As Single, ByVal TorqueDataFileFullPath As String)
+    Sub RecordTorqueData(ByVal TorqueArray As Object, ByVal i As Integer, ByVal TorqueDataFileFullPath As String)
         Dim Tmp As Single
         Try
 
@@ -742,7 +744,7 @@ CycleEnd:
                 TorqueDataFile.WriteLine("n/a")
             Else
                 For j = 0 To TorqueDataPoints - 1
-                    Tmp = -TorqueArray(j, 1) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm
+                    Tmp = TorqueArray(j, 1) '(My.Settings.AIRes + TorqueArray(j, 1)) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm * 2
                     TorqueDataFile.Write(Tmp.ToString("n3") & ControlChars.Tab)
                 Next
                 TorqueDataFile.WriteLine("")
