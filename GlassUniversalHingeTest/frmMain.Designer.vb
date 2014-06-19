@@ -23,9 +23,9 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Title1 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Title2 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
         Me.tctlMain = New System.Windows.Forms.TabControl()
         Me.tabMain = New System.Windows.Forms.TabPage()
         Me.lblStartTime = New System.Windows.Forms.Label()
@@ -216,7 +216,7 @@ Partial Class frmMain
         Me.cmdStop.Location = New System.Drawing.Point(112, 144)
         Me.cmdStop.Name = "cmdStop"
         Me.cmdStop.Size = New System.Drawing.Size(88, 24)
-        Me.cmdStop.TabIndex = 2
+        Me.cmdStop.TabIndex = 1
         Me.cmdStop.Text = "Stop"
         Me.cmdStop.UseVisualStyleBackColor = True
         '
@@ -226,7 +226,7 @@ Partial Class frmMain
         Me.cmdPauseResume.Location = New System.Drawing.Point(216, 144)
         Me.cmdPauseResume.Name = "cmdPauseResume"
         Me.cmdPauseResume.Size = New System.Drawing.Size(88, 24)
-        Me.cmdPauseResume.TabIndex = 1
+        Me.cmdPauseResume.TabIndex = 2
         Me.cmdPauseResume.Text = "Pause"
         Me.cmdPauseResume.UseVisualStyleBackColor = True
         '
@@ -247,7 +247,7 @@ Partial Class frmMain
         Me.tabConfig.Location = New System.Drawing.Point(4, 22)
         Me.tabConfig.Name = "tabConfig"
         Me.tabConfig.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabConfig.Size = New System.Drawing.Size(312, 206)
+        Me.tabConfig.Size = New System.Drawing.Size(312, 174)
         Me.tabConfig.TabIndex = 1
         Me.tabConfig.Text = "Config"
         Me.tabConfig.UseVisualStyleBackColor = True
@@ -284,7 +284,7 @@ Partial Class frmMain
         Me.stpMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stpStatusStrip})
         Me.stpMain.Location = New System.Drawing.Point(0, 509)
         Me.stpMain.Name = "stpMain"
-        Me.stpMain.Size = New System.Drawing.Size(337, 22)
+        Me.stpMain.Size = New System.Drawing.Size(1039, 22)
         Me.stpMain.TabIndex = 1
         Me.stpMain.Text = "StatusStrip1"
         '
@@ -452,7 +452,7 @@ Partial Class frmMain
         Me.CmdFrameHingeNeutral.Location = New System.Drawing.Point(184, 120)
         Me.CmdFrameHingeNeutral.Name = "CmdFrameHingeNeutral"
         Me.CmdFrameHingeNeutral.Size = New System.Drawing.Size(128, 24)
-        Me.CmdFrameHingeNeutral.TabIndex = 33
+        Me.CmdFrameHingeNeutral.TabIndex = 11
         Me.CmdFrameHingeNeutral.Text = "Frame Hinge Neutral"
         Me.CmdFrameHingeNeutral.UseVisualStyleBackColor = True
         '
@@ -461,7 +461,7 @@ Partial Class frmMain
         Me.cmdCrystalHingeNeutral.Location = New System.Drawing.Point(16, 120)
         Me.cmdCrystalHingeNeutral.Name = "cmdCrystalHingeNeutral"
         Me.cmdCrystalHingeNeutral.Size = New System.Drawing.Size(128, 24)
-        Me.cmdCrystalHingeNeutral.TabIndex = 32
+        Me.cmdCrystalHingeNeutral.TabIndex = 10
         Me.cmdCrystalHingeNeutral.Text = "Crystal Hinge Neutral "
         Me.cmdCrystalHingeNeutral.UseVisualStyleBackColor = True
         '
@@ -573,36 +573,37 @@ Partial Class frmMain
         '
         Me.chtTorqueVsDisp.BorderlineColor = System.Drawing.Color.Black
         Me.chtTorqueVsDisp.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
-        ChartArea1.AxisX.LabelStyle.Interval = 0.0R
-        ChartArea1.AxisX.MinorGrid.Enabled = True
-        ChartArea1.AxisX.MinorGrid.LineColor = System.Drawing.Color.DarkGray
-        ChartArea1.AxisX.TitleFont = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        ChartArea1.AxisY.MinorGrid.Enabled = True
-        ChartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.DarkGray
-        ChartArea1.AxisY.TitleFont = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        ChartArea1.BackColor = System.Drawing.Color.WhiteSmoke
-        ChartArea1.Name = "ChartArea1"
-        Me.chtTorqueVsDisp.ChartAreas.Add(ChartArea1)
-        Legend1.BorderColor = System.Drawing.Color.Black
-        Legend1.DockedToChartArea = "ChartArea1"
-        Legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left
-        Legend1.Name = "Legend1"
-        Me.chtTorqueVsDisp.Legends.Add(Legend1)
-        Me.chtTorqueVsDisp.Location = New System.Drawing.Point(368, 8)
+        ChartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount
+        ChartArea2.AxisX.LabelStyle.Interval = 0.0R
+        ChartArea2.AxisX.MinorGrid.Enabled = True
+        ChartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.DarkGray
+        ChartArea2.AxisX.TitleFont = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        ChartArea2.AxisY.MinorGrid.Enabled = True
+        ChartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.DarkGray
+        ChartArea2.AxisY.TitleFont = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        ChartArea2.BackColor = System.Drawing.Color.WhiteSmoke
+        ChartArea2.Name = "ChartArea1"
+        Me.chtTorqueVsDisp.ChartAreas.Add(ChartArea2)
+        Legend2.BorderColor = System.Drawing.Color.Black
+        Legend2.DockedToChartArea = "ChartArea1"
+        Legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left
+        Legend2.Name = "Legend1"
+        Me.chtTorqueVsDisp.Legends.Add(Legend2)
+        Me.chtTorqueVsDisp.Location = New System.Drawing.Point(336, 8)
         Me.chtTorqueVsDisp.Name = "chtTorqueVsDisp"
-        Me.chtTorqueVsDisp.Size = New System.Drawing.Size(536, 504)
+        Me.chtTorqueVsDisp.Size = New System.Drawing.Size(696, 496)
         Me.chtTorqueVsDisp.TabIndex = 30
         Me.chtTorqueVsDisp.Text = "Chart1"
-        Title1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold)
-        Title1.Name = "Title1"
-        Title1.Text = "Torque Profile"
-        Me.chtTorqueVsDisp.Titles.Add(Title1)
+        Title2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold)
+        Title2.Name = "Title1"
+        Title2.Text = "Torque Profile"
+        Me.chtTorqueVsDisp.Titles.Add(Title2)
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(337, 531)
+        Me.ClientSize = New System.Drawing.Size(1039, 531)
         Me.Controls.Add(Me.chtTorqueVsDisp)
         Me.Controls.Add(Me.gbxManualControl)
         Me.Controls.Add(Me.GroupBox1)

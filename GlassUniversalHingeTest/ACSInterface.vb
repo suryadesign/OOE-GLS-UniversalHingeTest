@@ -7,10 +7,10 @@ Module ACSInterface
     Public Const MaxTorque As Single = 50 * OzIn2KgfCm  'max torque of torque transducer (must match upper calibration value for FUTEK)
     Public Const TorqueDataPoints As Integer = 1000   'must match ACS script NRawSamples/Discard rate (5000/5)
     Public TorqueConversionFactor As Single = -1 / My.Settings.FullScaleVoltage / My.Settings.AIScale * My.Settings.FullScaleTorque * OzIn2KgfCm
-    Public Const m As Single = 111.37               'XCURV vs force - check excel spreadsheet for this value
-    Public Const b As Single = 208.47               'XCURV vs force - check excel spreadsheet for this value
-    Public Const NominalMinTorque As Single = 420    'minimum force corresponding to XCURV that permits motion
-    Public Const NominalMaxTorque As Single = 1350   'round number near 3lbs
+    Public Const m As Single = 0.1489               'XCURV vs torque - check excel spreadsheet for this value
+    Public Const b As Single = 0.225               'XCURV vs torque- check excel spreadsheet for this value
+    Public Const NominalMinTorque As Single = 0.5    'minimum torque corresponding to XCURV that permits motion
+    Public Const NominalMaxTorque As Single = 3.6   'round number near maxtorque
     Public Const Ticks2ms As Integer = 10000        'number of ticks per ms
 
 
@@ -141,10 +141,8 @@ Module ACSInterface
             If TorqueLimit > MaxTorque Then
                 TorqueLimit = MaxTorque
             End If
-            'Ch.Transaction("XCURV" & Axis & " = " & 10.3467)
-            'Ch.Transaction("XCURI" & Axis & " = " & 10.3467)
-            'Ch.Transaction("XCURV" & Axis & " = " & (TorqueLimit - b) / m)
-            'Ch.Transaction("XCURI" & Axis & " = " & (TorqueLimit - b) / m)
+            Ch.Transaction("XCURV" & Axis & " = " & (TorqueLimit - b) / m)
+            Ch.Transaction("XCURI" & Axis & " = " & (TorqueLimit - b) / m)
         Catch ex As Exception
             ErrMsg = ex.Message
             SetTorqueLimit = False

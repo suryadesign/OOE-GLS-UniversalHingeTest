@@ -147,15 +147,15 @@
     End Sub
     Private Sub txtTorqueLimit_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTorqueLimit.Validated
         If Not IsNumeric(txtTorqueLimit.Text) Then
-            MessageBox.Show("Force limit must be numeric.")
+            MessageBox.Show("Torque limit must be numeric.")
             txtTorqueLimit.Text = My.Settings.LastTorqueLimit
         Else
             If txtTorqueLimit.Text < NominalMinTorque Then
-                MessageBox.Show("Force limit must be greater than " & NominalMinTorque.ToString("n0") & " gf.")
+                MessageBox.Show("Torque limit must be greater than " & NominalMinTorque.ToString("n2") & " kgf-cm.")
                 txtTorqueLimit.Text = NominalMinTorque
             End If
             If txtTorqueLimit.Text > NominalMaxTorque Then
-                MessageBox.Show("Force limit must be less than " & NominalMaxTorque.ToString("n0") & " gf.")
+                MessageBox.Show("Torque limit must be less than " & NominalMaxTorque.ToString("n2") & " kgf-cm.")
                 txtTorqueLimit.Text = NominalMaxTorque
             End If
         End If

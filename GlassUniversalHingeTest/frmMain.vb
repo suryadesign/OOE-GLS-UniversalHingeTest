@@ -634,6 +634,7 @@ CycleEnd:
         CWTorquemax = Single.MinValue
         CCWTorqueMax = Single.MaxValue
         Dim ThetaMax = Single.MinValue
+        Dim ThetaMin = Single.MaxValue
         Dim Torque As Single
         Dim Dist As Single = 0
         chtTorqueVsDisp.Series.Add("Cycle")
@@ -643,14 +644,21 @@ CycleEnd:
         'add the data to the series
         If GraphDisplay = 0 Then            'if plotting vs displacement
             For j = 0 To TorqueDataPoints - 1
-                Torque = (My.Settings.AIRes - TorqueArray(j, 1)) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm
+                If (TorqueArray(j, 0) = 0) And (TorqueArray(j, 1) = 0) Then
+                    Exit For
+                End If
+                Torque = (TorqueArray(j, 1) - My.Settings.AIRes / 2) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm * 2
                 chtTorqueVsDisp.Series("Cycle").Points.AddXY(TorqueArray(j, 0), Torque)
                 If Torque > CWTorquemax Then CWTorquemax = Torque
                 If Torque < CCWTorqueMax Then CCWTorqueMax = Torque
                 If TorqueArray(j, 0) > ThetaMax Then ThetaMax = TorqueArray(j, 0)
+                If TorqueArray(j, 0) < ThetaMin Then ThetaMin = TorqueArray(j, 0)
             Next
         Else                                'else plotting vs distance
             For j = 0 To TorqueDataPoints - 1
+                If (TorqueArray(j, 0) = 0) And (TorqueArray(j, 1) = 0) Then
+                    Exit For
+                End If
                 Torque = -TorqueArray(j, 1) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm
                 If j = 0 Then
                     Dist = TorqueArray(j, 0)
@@ -661,63 +669,62 @@ CycleEnd:
                 If Torque > CWTorquemax Then CWTorquemax = Torque
                 If Torque < CCWTorqueMax Then CCWTorqueMax = Torque
                 If Dist > ThetaMax Then ThetaMax = Dist
+                If Dist < ThetaMax Then ThetaMin = Dist
             Next
         End If
         If chtTorqueVsDisp.Series.Count = 1 Then
             chtTorqueVsDisp.Series(0).Color = Color.Red       'initial plot in red
             chtTorqueVsDisp.Series(0).Name = "First Cycle"
-            'Select Case Torquemax
-            '    Case Single.MinValue To 200
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -25
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 25
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 25
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 5
-            '    Case 200 To 400
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -50
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 50
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 50
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 10
-            '    Case 400 To 600
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -50
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 100
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 100
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 25
-            '    Case 600 To Single.MaxValue
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -50
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 100
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 100
-            '        chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 50
-            'End Select
-            'Select Case ThetaMax
-            '    Case Single.MinValue To 0.1
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 0.02
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 0.02
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 0.005
-            '    Case 0.1 To 0.2
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 0.04
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 0.04
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 0.01
-            '    Case 0.2 To 0.5
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 0.1
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 0.1
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 0.02
-            '    Case 0.5 To 1.0
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 0.2
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 0.2
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 0.05
-            '    Case 1 To 2
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 0.4
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 0.4
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 0.1
-            '    Case 2 To 5
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 1
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 1
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 0.2
-            '    Case 5 To 10
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 2
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 2
-            '        chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 0.5
-            'End Select
+            Select Case Math.Abs(CWTorquemax)
+                Case Single.MinValue To 0.5
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -0.5
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Maximum = 0.5
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 0.1
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 0.1
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 0.05
+                Case 0.5 To 1
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -1
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Maximum = 1
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 0.2
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 0.2
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 0.1
+                Case 1 To 1.5
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -1.5
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Maximum = 1.5
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 0.25
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 0.25
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 0.1
+                Case 1.5 To MaxTorque
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -MaxTorque
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Maximum = MaxTorque
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 0.5
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 0.5
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 0.2
+            End Select
+            Select Case ThetaMax
+                Case Single.MinValue To 5
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 1
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 1
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 0.5
+                Case 5 To 15
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 2
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 2
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 1
+                Case 15 To 45
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 5
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 5
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 2
+                Case 45 To 90
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 10
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 10
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 5
+                Case 90 To 360
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.Interval = 30
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MajorGrid.Interval = 30
+                    chtTorqueVsDisp.ChartAreas(0).AxisX.MinorGrid.Interval = 15
+            End Select
+            chtTorqueVsDisp.ChartAreas(0).AxisX.Minimum = Math.Round((ThetaMin - 2.5) / 5) * 5 '- IIf((ThetaMax - ThetaMin) < 10, 2, 10)
+            chtTorqueVsDisp.ChartAreas(0).AxisX.Maximum = Math.Round((ThetaMax + 2.5) / 5) * 5
         ElseIf chtTorqueVsDisp.Series.Count > 1 Then
             chtTorqueVsDisp.Series(1).Color = Color.Blue      'all other plots in blue
             chtTorqueVsDisp.Series(1).Name = "Previous Cycle"
@@ -734,6 +741,9 @@ CycleEnd:
                 TorqueDataFile.WriteLine("n/a")
             Else
                 For j = 0 To TorqueDataPoints - 1
+                    If (TorqueArray(j, 0) = 0) And (TorqueArray(j, 1) = 0) Then
+                        Exit For
+                    End If
                     Tmp = TorqueArray(j, 0)
                     TorqueDataFile.Write(Tmp.ToString("n1") & ControlChars.Tab)
                 Next
@@ -744,7 +754,10 @@ CycleEnd:
                 TorqueDataFile.WriteLine("n/a")
             Else
                 For j = 0 To TorqueDataPoints - 1
-                    Tmp = TorqueArray(j, 1) '(My.Settings.AIRes + TorqueArray(j, 1)) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm * 2
+                    If (TorqueArray(j, 0) = 0) And (TorqueArray(j, 1) = 0) Then
+                        Exit For
+                    End If
+                    Tmp = (TorqueArray(j, 1) - My.Settings.AIRes / 2) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm * 2
                     TorqueDataFile.Write(Tmp.ToString("n3") & ControlChars.Tab)
                 Next
                 TorqueDataFile.WriteLine("")

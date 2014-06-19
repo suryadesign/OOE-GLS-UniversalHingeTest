@@ -96,7 +96,7 @@ Partial Class frmTestInput
         Me.cmdStart.Location = New System.Drawing.Point(296, 336)
         Me.cmdStart.Name = "cmdStart"
         Me.cmdStart.Size = New System.Drawing.Size(144, 24)
-        Me.cmdStart.TabIndex = 5
+        Me.cmdStart.TabIndex = 7
         Me.cmdStart.Text = "&Start Test"
         Me.cmdStart.UseVisualStyleBackColor = True
         '
@@ -106,7 +106,7 @@ Partial Class frmTestInput
         Me.cmdCancel.Location = New System.Drawing.Point(448, 336)
         Me.cmdCancel.Name = "cmdCancel"
         Me.cmdCancel.Size = New System.Drawing.Size(144, 24)
-        Me.cmdCancel.TabIndex = 6
+        Me.cmdCancel.TabIndex = 8
         Me.cmdCancel.Text = "&Cancel"
         Me.cmdCancel.UseVisualStyleBackColor = True
         '
@@ -129,7 +129,7 @@ Partial Class frmTestInput
         Me.chkFixtureErrorCyles.Location = New System.Drawing.Point(8, 48)
         Me.chkFixtureErrorCyles.Name = "chkFixtureErrorCyles"
         Me.chkFixtureErrorCyles.Size = New System.Drawing.Size(116, 17)
-        Me.chkFixtureErrorCyles.TabIndex = 6
+        Me.chkFixtureErrorCyles.TabIndex = 2
         Me.chkFixtureErrorCyles.Text = "Fixture Error Cycles"
         Me.chkFixtureErrorCyles.UseVisualStyleBackColor = True
         '
@@ -141,7 +141,7 @@ Partial Class frmTestInput
         Me.txtFixtureErrorCyles.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.txtFixtureErrorCyles.Name = "txtFixtureErrorCyles"
         Me.txtFixtureErrorCyles.Size = New System.Drawing.Size(120, 20)
-        Me.txtFixtureErrorCyles.TabIndex = 7
+        Me.txtFixtureErrorCyles.TabIndex = 3
         Me.txtFixtureErrorCyles.ThousandsSeparator = True
         Me.txtFixtureErrorCyles.Value = New Decimal(New Integer() {9999999, 0, 0, 0})
         '
@@ -160,7 +160,7 @@ Partial Class frmTestInput
         Me.txtRelPos.Location = New System.Drawing.Point(136, 20)
         Me.txtRelPos.Name = "txtRelPos"
         Me.txtRelPos.Size = New System.Drawing.Size(64, 20)
-        Me.txtRelPos.TabIndex = 1
+        Me.txtRelPos.TabIndex = 0
         Me.txtRelPos.Text = "0.005"
         Me.ToolTip1.SetToolTip(Me.txtRelPos, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
         '
@@ -185,7 +185,7 @@ Partial Class frmTestInput
         Me.rdoUnidirectionalCCW.Location = New System.Drawing.Point(16, 88)
         Me.rdoUnidirectionalCCW.Name = "rdoUnidirectionalCCW"
         Me.rdoUnidirectionalCCW.Size = New System.Drawing.Size(176, 17)
-        Me.rdoUnidirectionalCCW.TabIndex = 6
+        Me.rdoUnidirectionalCCW.TabIndex = 2
         Me.rdoUnidirectionalCCW.TabStop = True
         Me.rdoUnidirectionalCCW.Text = "Unidirectional Counterclockwise"
         Me.rdoUnidirectionalCCW.UseVisualStyleBackColor = True
@@ -196,7 +196,7 @@ Partial Class frmTestInput
         Me.rdoBidirectional.Location = New System.Drawing.Point(16, 112)
         Me.rdoBidirectional.Name = "rdoBidirectional"
         Me.rdoBidirectional.Size = New System.Drawing.Size(195, 17)
-        Me.rdoBidirectional.TabIndex = 5
+        Me.rdoBidirectional.TabIndex = 3
         Me.rdoBidirectional.TabStop = True
         Me.rdoBidirectional.Text = "Bidirectional (± from current position)"
         Me.rdoBidirectional.UseVisualStyleBackColor = True
@@ -216,7 +216,7 @@ Partial Class frmTestInput
         Me.rdoUnidirectionalCW.Location = New System.Drawing.Point(16, 64)
         Me.rdoUnidirectionalCW.Name = "rdoUnidirectionalCW"
         Me.rdoUnidirectionalCW.Size = New System.Drawing.Size(140, 17)
-        Me.rdoUnidirectionalCW.TabIndex = 3
+        Me.rdoUnidirectionalCW.TabIndex = 1
         Me.rdoUnidirectionalCW.TabStop = True
         Me.rdoUnidirectionalCW.Text = "Unidirectional Clockwise"
         Me.rdoUnidirectionalCW.UseVisualStyleBackColor = True
@@ -300,7 +300,7 @@ Partial Class frmTestInput
         Me.rdoFrameHinge.Location = New System.Drawing.Point(128, 136)
         Me.rdoFrameHinge.Name = "rdoFrameHinge"
         Me.rdoFrameHinge.Size = New System.Drawing.Size(85, 17)
-        Me.rdoFrameHinge.TabIndex = 52
+        Me.rdoFrameHinge.TabIndex = 6
         Me.rdoFrameHinge.TabStop = True
         Me.rdoFrameHinge.Text = "Frame Hinge"
         Me.rdoFrameHinge.UseVisualStyleBackColor = True
@@ -320,7 +320,7 @@ Partial Class frmTestInput
         Me.rdoCrystalHinge.Location = New System.Drawing.Point(16, 136)
         Me.rdoCrystalHinge.Name = "rdoCrystalHinge"
         Me.rdoCrystalHinge.Size = New System.Drawing.Size(87, 17)
-        Me.rdoCrystalHinge.TabIndex = 50
+        Me.rdoCrystalHinge.TabIndex = 5
         Me.rdoCrystalHinge.TabStop = True
         Me.rdoCrystalHinge.Text = "Crystal Hinge"
         Me.rdoCrystalHinge.UseVisualStyleBackColor = True
@@ -413,7 +413,7 @@ Partial Class frmTestInput
         Me.GroupBox3.Location = New System.Drawing.Point(8, 192)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(280, 168)
-        Me.GroupBox3.TabIndex = 7
+        Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Data Acquisition Options"
         '
@@ -523,7 +523,7 @@ Partial Class frmTestInput
         Me.cmdLoadCrystalDefaults.Location = New System.Drawing.Point(296, 304)
         Me.cmdLoadCrystalDefaults.Name = "cmdLoadCrystalDefaults"
         Me.cmdLoadCrystalDefaults.Size = New System.Drawing.Size(144, 24)
-        Me.cmdLoadCrystalDefaults.TabIndex = 8
+        Me.cmdLoadCrystalDefaults.TabIndex = 5
         Me.cmdLoadCrystalDefaults.Text = "Load Crystal Defaults"
         Me.cmdLoadCrystalDefaults.UseVisualStyleBackColor = True
         '
@@ -532,7 +532,7 @@ Partial Class frmTestInput
         Me.cmdLoadFrameDefaults.Location = New System.Drawing.Point(448, 304)
         Me.cmdLoadFrameDefaults.Name = "cmdLoadFrameDefaults"
         Me.cmdLoadFrameDefaults.Size = New System.Drawing.Size(144, 24)
-        Me.cmdLoadFrameDefaults.TabIndex = 9
+        Me.cmdLoadFrameDefaults.TabIndex = 6
         Me.cmdLoadFrameDefaults.Text = "Load Frame Defaults"
         Me.cmdLoadFrameDefaults.UseVisualStyleBackColor = True
         '
