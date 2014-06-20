@@ -186,15 +186,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Glass Universal Hinge Test"
-        "ProductCode" = "8:{D8D2FBAF-35D5-41EE-ADCE-A4667B23F78B}"
-        "PackageCode" = "8:{78BCE17D-F7E8-4E15-B8D7-1308AFE3549C}"
+        "ProductCode" = "8:{ECCFCB20-7202-4805-9674-0E14867CF6F0}"
+        "PackageCode" = "8:{E748034B-6B8E-4237-BB1E-ECD4C56DCFA7}"
         "UpgradeCode" = "8:{D4A3EDDB-1087-44A4-87DC-C5AAB6897E1D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:Surya Design"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -736,7 +736,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3E3A68038EDE48AEB31B60BC4FBF213E"
             {
-            "SourcePath" = "8:..\\GlassUniversalHingeTest\\obj\\Debug\\GlassUniversalHingeTest.exe"
+            "SourcePath" = "8:..\\GlassUniversalHingeTest\\obj\\Release\\GlassUniversalHingeTest.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_59BEE25D588F4544AA771A9A1C35AEB9"

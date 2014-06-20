@@ -78,7 +78,6 @@ Module ACSInterface
         'moves actuator a fixed amount
         Dim BufNum As Integer = 3
         Dim T0 As Long = Date.Now.Ticks
-        Debug.Print("to:" & T0)
         Select Case Axis
             Case "X"
                 Ch.WriteVariable(0, "AXIS", Ch.ACSC_NONE)
@@ -98,7 +97,6 @@ Module ACSInterface
         Ch.RunBuffer(BufNum)
         Do
             Application.DoEvents()
-            Debug.Print(Date.Now.Ticks)
         Loop Until (Date.Now.Ticks - T0 > My.Settings.LongTimeOut) Or (Ch.ReadVariable("RunStatus", BufNum) <> -1)
         If Ch.ReadVariable("RunStatus", BufNum) = 0 Then
             MoveActuator = True
@@ -226,7 +224,6 @@ Module ACSInterface
         Dim AxisStatus As Byte
         Try
             AxisStatus = Ch.Transaction("?MST0.0")
-            'Debug.Print(AxisStatus)
         Catch ex As Exception
             ErrMsg = ex.Message
             GetAxisStatus = ErrByte
@@ -256,7 +253,7 @@ Module ACSInterface
             ErrMsg = "Actuation error: Timed out!"
             TwistToPosition = False
         Else
-            ErrMsg = "Actuation error: " & Ch.GetErrorString(Ch.ReadVariable("RunStatus", BufNum))
+            ErrMsg = "Actuation error: " & Ch.GetErrorString(Ch.ReadVariable("RunStatus", BufNum)).Replace(Chr(13), "")
             TwistToPosition = False
         End If
     End Function

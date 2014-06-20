@@ -160,14 +160,11 @@
             End If
         End If
     End Sub
-
-
     Private Sub cmdLoadCrystalDefaults_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdLoadCrystalDefaults.Click
         rdoCrystalHinge.Checked = True
         rdoBidirectional.Checked = True
         txtRelPos.Text = My.Settings.DefaultCrystalRelPos
     End Sub
-
     Private Sub cmdLoadFrameDefaults_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdLoadFrameDefaults.Click
         rdoFrameHinge.Checked = True
         rdoUnidirectionalCW.Checked = True

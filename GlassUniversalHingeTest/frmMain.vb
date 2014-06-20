@@ -1,4 +1,5 @@
 ﻿Public Class frmMain
+    'These are values that correspond to indexes for the radio buttons on frmTestInput
     Public Const CWUnidirectional As Integer = 0
     Public Const CCWUnidirectional As Integer = 1
     Public Const Bidirectional As Integer = 2
@@ -13,10 +14,10 @@
     Public Const GraphDisplacement As Integer = 0
     Public Const GraphDistance As Integer = 1
 
-
     Public DeviceID, TestOperator, DataFilePath, StartTime As String
     Public DwellTime, NumCycles, ConsecFailLimit, TotalFailLimit, FixtureFailureLimit, DAQFrequency, GraphDisplay, DeviceType, MotionMode As Integer
     ' graphdisplay indicates whether graphing vs displacement or distance
+    ' motionmode is whether motion is bidirectional or unidir CW/CCW
     Public RelPos, TorqueLimit As Single
     Public EndOnCycles, EndOnFixtureFailLimit, TimedOut, LimitTorque As Boolean
 
@@ -31,7 +32,7 @@
         Windows.Forms.Cursor.Current = Cursors.WaitCursor
         timUpdateUI.Enabled = False
         stpStatusStrip.Text = "Initializing..."
-        Me.Text = My.Settings.ACSIP     'give the form a name
+        Me.Text = "Glass Universal Hinge Tester: " & My.Settings.ACSIP     'give the form a name
         timUpdateUI.Interval = 100        'set ui update interval
         txtThetaPos.Text = My.Settings.LastThetaPos
         If ConnectACS(ErrMsg) Then          ' if successful connection to motion controller
@@ -452,6 +453,7 @@
             MessageBox.Show(ex.Message)
         End Try
 
+        'zero the position before running the test
         If ZeroPos(0, ErrMsg) Then
         Else
             stpStatusStrip.Text = ErrMsg
@@ -460,6 +462,7 @@
 
         Dim i As Integer = 1
         Dim TorqueArray
+        'set torque limit if user requests
         If LimitTorque Then
             If SetTorqueLimit(0, TorqueLimit, ErrMsg) Then
             Else
@@ -483,11 +486,10 @@
             OffsetTheta = 0
         End If
 
-        'each move will begin with the manipulator against the DUT.  so, we must move the DUT all the way one way, then move the manipulator against the DUT
+        'each move will begin with the manipulator against the DUT in the opposite direction of the first move
+        'eg if moving CCW for the first move, the manipulator will be CW against it
         'in the case of the bidirectional test, we must first move the DUT all the way to one end of the motion (so that testing is not +/- theta, but + 2 * theta
-
-
-        If MotionMode = CWUnidirectional Then   '
+        If MotionMode = CWUnidirectional Then
             InitLoc = -OffsetTheta
         ElseIf MotionMode = CCWUnidirectional Then
             InitLoc = OffsetTheta
@@ -500,12 +502,8 @@
             stpStatusStrip.Text = "Move error...Idle." & ErrMsg
             ErrMsg = ""
         End If
-        'InitLoc = GetPos(0, ErrMsg)
-        'If InitLoc = ErrSingle Then
-        '    MsgBox("ERROR:" & ErrMsg)
-        '    ErrMsg = ""
-        'End If
-        Do
+
+        Do  'start cycling
             lblCurrentCycle.Text = i.ToString("n0")
             'run a cycle depending on the end travel condition
             If MotionMode = CWUnidirectional Then
@@ -608,7 +606,6 @@ CycleEnd:
         'move actuator back to original position
         MoveActuator("X", 0, True, ErrMsg)
 
-
         'write test summary 
         Try
             Dim MainDataFile As New System.IO.StreamWriter(MainDataFileFullPath, True)
@@ -644,11 +641,13 @@ CycleEnd:
         'add the data to the series
         If GraphDisplay = 0 Then            'if plotting vs displacement
             For j = 0 To TorqueDataPoints - 1
-                If (TorqueArray(j, 0) = 0) And (TorqueArray(j, 1) = 0) Then
+                If (TorqueArray(j, 0) = 0) And (TorqueArray(j, 1) = 0) Then         'do not record 0 values filled by ACS buffer
                     Exit For
                 End If
+                'convert raw AI values to torque
                 Torque = (TorqueArray(j, 1) - My.Settings.AIRes / 2) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm * 2
                 chtTorqueVsDisp.Series("Cycle").Points.AddXY(TorqueArray(j, 0), Torque)
+                'Find range of torque and theta
                 If Torque > CWTorquemax Then CWTorquemax = Torque
                 If Torque < CCWTorqueMax Then CCWTorqueMax = Torque
                 If TorqueArray(j, 0) > ThetaMax Then ThetaMax = TorqueArray(j, 0)
@@ -656,16 +655,19 @@ CycleEnd:
             Next
         Else                                'else plotting vs distance
             For j = 0 To TorqueDataPoints - 1
-                If (TorqueArray(j, 0) = 0) And (TorqueArray(j, 1) = 0) Then
+                If (TorqueArray(j, 0) = 0) And (TorqueArray(j, 1) = 0) Then     'do not record 0 values filled by ACS buffer
                     Exit For
                 End If
-                Torque = -TorqueArray(j, 1) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm
+                'convert raw AI values to torque
+                Torque = (TorqueArray(j, 1) - My.Settings.AIRes / 2) / My.Settings.AIRes * My.Settings.FullScaleTorque * OzIn2KgfCm * 2
+                'calculate distance (as opposed to displacement)
                 If j = 0 Then
                     Dist = TorqueArray(j, 0)
                 Else
                     Dist = Dist + Math.Abs(TorqueArray(j, 0) - TorqueArray(j - 1, 0))
                 End If
                 chtTorqueVsDisp.Series("Cycle").Points.AddXY(Dist, Torque)
+                'Find range of torque and theta
                 If Torque > CWTorquemax Then CWTorquemax = Torque
                 If Torque < CCWTorqueMax Then CCWTorqueMax = Torque
                 If Dist > ThetaMax Then ThetaMax = Dist
@@ -863,5 +865,5 @@ CycleEnd:
         End If
     End Sub
 
-    
+
 End Class
