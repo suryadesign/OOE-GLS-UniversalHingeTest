@@ -28,8 +28,8 @@ Module ACSInterface
     End Function
     Public Function DisconnectACS(ByRef ErrMsg As String) As Boolean
         'disconnects ACS controller, kills all terminations except for MMI
-        Dim HandlesList, AppNamesList, ProcessIDList As Object
-        Dim i, NumCons As Integer
+        'Dim HandlesList, AppNamesList, ProcessIDList As Object
+        'Dim i, NumCons As Integer
         Try
             Ch.CloseComm()
             'NumCons = Ch.GetConnectionsList(HandlesList, AppNamesList, ProcessIDList)
@@ -177,7 +177,7 @@ Module ACSInterface
         'gets the force from the force transducer
         Dim Torque As Single
         Try
-            Torque = Ch.Transaction("?AIN0")
+            Torque = -Ch.Transaction("?AIN0")
         Catch ex As Exception
             ErrMsg = ex.Message
             GetTorque = ErrSingle

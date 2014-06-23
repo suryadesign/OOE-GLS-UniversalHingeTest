@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ACSIP" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">10.0.0.103</Value>
+      <Value Profile="(Default)">10.0.0.102</Value>
     </Setting>
     <Setting Name="AIRes" Type="System.String" Scope="Application">
       <Value Profile="(Default)">4096</Value>
