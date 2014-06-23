@@ -32,12 +32,12 @@ Module ACSInterface
         Dim i, NumCons As Integer
         Try
             Ch.CloseComm()
-            NumCons = Ch.GetConnectionsList(HandlesList, AppNamesList, ProcessIDList)
-            For i = 0 To NumCons - 1
-                If InStr(AppNamesList(i), "ACS.Framework.exe") = 0 Then
-                    Ch.TerminateConnection(HandlesList(i), AppNamesList(i))
-                End If
-            Next
+            'NumCons = Ch.GetConnectionsList(HandlesList, AppNamesList, ProcessIDList)
+            'For i = 0 To NumCons - 1
+            '    If InStr(AppNamesList(i), "ACS.Framework.exe") = 0 Then
+            '        Ch.TerminateConnection(HandlesList(i), AppNamesList(i))
+            '    End If
+            'Next
         Catch ex As Exception
             ErrMsg = ex.Message
             DisconnectACS = False
