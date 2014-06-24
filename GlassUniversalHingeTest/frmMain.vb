@@ -32,7 +32,7 @@
         Windows.Forms.Cursor.Current = Cursors.WaitCursor
         timUpdateUI.Enabled = False
         stpStatusStrip.Text = "Initializing..."
-        Me.Text = "Glass Universal Hinge Tester: " & My.Settings.ACSIP     'give the form a name
+        Me.Text = "Glass Universal Hinge Tester: " & My.Settings.ACSIP & " - " & My.Settings.DUTType & " Hinge"  'give the form a name
         timUpdateUI.Interval = 100        'set ui update interval
         txtThetaPos.Text = My.Settings.LastThetaPos
         If ConnectACS(ErrMsg) Then          ' if successful connection to motion controller

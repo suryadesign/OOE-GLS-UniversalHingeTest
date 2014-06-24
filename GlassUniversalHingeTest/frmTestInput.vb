@@ -5,7 +5,7 @@
         txtDataFilePath.Text = fbdDataFilePath.SelectedPath
     End Sub
     Private Sub frmTestInput_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Text = My.Settings.ACSIP & " Test Information..."
+        Me.Text = My.Settings.ACSIP & " - " & My.Settings.DUTType & " Hinge" & " Test Information..."
         'Load previous values from settings
         txtDevID.Text = My.Settings.LastDeviceID
         txtOperator.Text = My.Settings.LastOperator

@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("10.0.0.102")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10.0.10.103")>  _
         Public ReadOnly Property ACSIP() As String
             Get
                 Return CType(Me("ACSIP"),String)
@@ -576,6 +576,18 @@ Namespace My
             End Get
             Set
                 Me("DefaultCrystalRelPos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Crystal")>  _
+        Public Property DUTType() As String
+            Get
+                Return CType(Me("DUTType"),String)
+            End Get
+            Set
+                Me("DUTType") = value
             End Set
         End Property
     End Class
