@@ -1,5 +1,4 @@
 ﻿Public Class frmTestInput
-
     Private Sub cmdShowFolderDialog_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         fbdDataFilePath.ShowDialog()
         txtDataFilePath.Text = fbdDataFilePath.SelectedPath
