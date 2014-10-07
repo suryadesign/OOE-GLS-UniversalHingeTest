@@ -257,5 +257,32 @@ Module ACSInterface
             TwistToPosition = False
         End If
     End Function
-  
+
+    Public Function TwistToTargetTorque(ByVal DwellTime As Integer, ByVal TargetTorque As Single, ByRef ErrMsg As String) As Object
+        'presses the DUT until a position is met 
+        Dim BufNum As Integer = 4
+        Dim RunStatus As Integer
+        Ch.WriteVariable(DwellTime, "DWELLTIME", Ch.ACSC_NONE)
+        Ch.WriteVariable(My.Settings.ShortTimeOut / Ticks2ms, "TIMEOUT", Ch.ACSC_NONE)
+        Ch.WriteVariable(TargetTorque / OzIn2KgfCm / My.Settings.FullScaleTorque * My.Settings.FullScaleVoltage * My.Settings.AIScale, "TORQUETARGET", Ch.ACSC_NONE)
+        Ch.RunBuffer(BufNum)
+        Do
+            Application.DoEvents()
+            RunStatus = Ch.ReadVariable("RunStatus", BufNum)
+        Loop Until (RunStatus <> -1)
+        If RunStatus = 0 Then
+            TwistToTargetTorque = Ch.ReadVariableAsMatrix("TORQUEDATACOLUMN", BufNum)
+        ElseIf RunStatus = -2 Then
+            ErrMsg = "Actuation error: Travel end condition not met!"
+            TwistToTargetTorque = False
+        ElseIf RunStatus = -1 Then
+            ErrMsg = "Actuation error: Timed out!"
+            TwistToTargetTorque = False
+        Else
+            ErrMsg = "Actuation error: " & Ch.GetErrorString(Ch.ReadVariable("RunStatus", BufNum)).Replace(Chr(13), "")
+            TwistToTargetTorque = False
+        End If
+    End Function
+
+
 End Module

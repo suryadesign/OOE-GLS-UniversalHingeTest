@@ -13,12 +13,15 @@
     Public Const DAQProgInt As Integer = 5
     Public Const GraphDisplacement As Integer = 0
     Public Const GraphDistance As Integer = 1
+    Public Const EndTravelRelPos As Integer = 0
+    Public Const EndTravelTargetTorque As Integer = 1
 
     Public DeviceID, TestOperator, DataFilePath, StartTime As String
-    Public DwellTime, NumCycles, ConsecFailLimit, TotalFailLimit, FixtureFailureLimit, DAQFrequency, GraphDisplay, DeviceType, MotionMode As Integer
+    Public DwellTime, NumCycles, ConsecFailLimit, TotalFailLimit, FixtureFailureLimit, DAQFrequency, _
+        GraphDisplay, DeviceType, MotionMode, TravelEndCondition As Integer
     ' graphdisplay indicates whether graphing vs displacement or distance
     ' motionmode is whether motion is bidirectional or unidir CW/CCW
-    Public RelPos, TorqueLimit As Single
+    Public RelPos, TorqueLimit, TargetTorque As Single
     Public EndOnCycles, EndOnFixtureFailLimit, TimedOut, LimitTorque As Boolean
 
     Public PauseFlag As Boolean = False     'flag for if user pauses testing
@@ -422,7 +425,12 @@
             MainDataFile.WriteLine("Fixture ID:" & ControlChars.Tab & My.Settings.ACSIP)
             MainDataFile.WriteLine("Dwell Time [msec]:" & ControlChars.Tab & DwellTime)
             MainDataFile.WriteLine("Torque Limit [kgf-cm]:" & ControlChars.Tab & IIf(LimitTorque, TorqueLimit.ToString("n1"), MaxTorque.ToString("n1")))
-            MainDataFile.WriteLine("Travel End Position:" & ControlChars.Tab & "Relative Postion (" & RelPos.ToString("n3") & " °)")
+            Select Case TravelEndCondition
+                Case EndTravelRelPos
+                    MainDataFile.WriteLine("Travel End Position:" & ControlChars.Tab & "Relative Postion (" & RelPos.ToString("n3") & "°)")
+                Case EndTravelTargetTorque
+                    MainDataFile.WriteLine("Travel End Position:" & ControlChars.Tab & "Torque Limit (" & TargetTorque.ToString("n2") & " kgf-cm)")
+            End Select
             MainDataFile.WriteLine("Test End Conditions:")
             MainDataFile.WriteLine(ControlChars.Tab & "Number of Cycles:" & ControlChars.Tab & IIf(EndOnCycles, NumCycles, "n/a"))
             MainDataFile.WriteLine(ControlChars.Tab & "Fixture Failures:" & ControlChars.Tab & IIf(EndOnFixtureFailLimit, FixtureFailureLimit, "n/a"))
@@ -506,14 +514,18 @@
         Do  'start cycling
             lblCurrentCycle.Text = i.ToString("n0")
             'run a cycle depending on the end travel condition
-            If MotionMode = CWUnidirectional Then
-                TorqueArray = TwistToPosition(InitLoc, DwellTime, OffsetTheta + RelPos, ErrMsg)
-            ElseIf MotionMode = CCWUnidirectional Then
-                TorqueArray = TwistToPosition(InitLoc, DwellTime, -OffsetTheta - RelPos, ErrMsg)
-            ElseIf MotionMode = Bidirectional Then
-                TorqueArray = TwistToPosition(InitLoc, DwellTime, InitLoc + 2 * OffsetTheta + 2 * RelPos, ErrMsg)
-            End If
-
+            Select Case TravelEndCondition
+                Case EndTravelRelPos
+                    If MotionMode = CWUnidirectional Then
+                        TorqueArray = TwistToPosition(InitLoc, DwellTime, OffsetTheta + RelPos, ErrMsg)
+                    ElseIf MotionMode = CCWUnidirectional Then
+                        TorqueArray = TwistToPosition(InitLoc, DwellTime, -OffsetTheta - RelPos, ErrMsg)
+                    ElseIf MotionMode = Bidirectional Then
+                        TorqueArray = TwistToPosition(InitLoc, DwellTime, InitLoc + 2 * OffsetTheta + 2 * RelPos, ErrMsg)
+                    End If
+                Case EndTravelTargetTorque
+                    TorqueArray = TwistToTargetTorque(DwellTime, TargetTorque, ErrMsg)
+            End Select
             If IsNumeric(TorqueArray) Then
                 stpStatusStrip.Text = ErrMsg
                 ErrMsg = ""
@@ -677,7 +689,7 @@ CycleEnd:
         If chtTorqueVsDisp.Series.Count = 1 Then
             chtTorqueVsDisp.Series(0).Color = Color.Red       'initial plot in red
             chtTorqueVsDisp.Series(0).Name = "First Cycle"
-            Select Case Math.Abs(CWTorquemax)
+            Select Case Math.Max(Math.Abs(CWTorquemax), Math.Abs(CCWTorqueMax))
                 Case Single.MinValue To 0.5
                     chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -0.5
                     chtTorqueVsDisp.ChartAreas(0).AxisY.Maximum = 0.5
@@ -695,13 +707,13 @@ CycleEnd:
                     chtTorqueVsDisp.ChartAreas(0).AxisY.Maximum = 1.5
                     chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 0.25
                     chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 0.25
-                    chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 0.1
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 0.125
                 Case 1.5 To MaxTorque
-                    chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -MaxTorque
-                    chtTorqueVsDisp.ChartAreas(0).AxisY.Maximum = MaxTorque
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Minimum = -4
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.Maximum = 4
                     chtTorqueVsDisp.ChartAreas(0).AxisY.Interval = 0.5
                     chtTorqueVsDisp.ChartAreas(0).AxisY.MajorGrid.Interval = 0.5
-                    chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 0.2
+                    chtTorqueVsDisp.ChartAreas(0).AxisY.MinorGrid.Interval = 0.25
             End Select
             Select Case ThetaMax
                 Case Single.MinValue To 5

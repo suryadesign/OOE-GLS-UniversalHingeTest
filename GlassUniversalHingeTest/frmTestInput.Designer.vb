@@ -34,12 +34,10 @@ Partial Class frmTestInput
         Me.chkEndOnCycles = New System.Windows.Forms.CheckBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.txtRelPos = New System.Windows.Forms.TextBox()
+        Me.txtTargetTorque = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.rdoUnidirectionalCCW = New System.Windows.Forms.RadioButton()
-        Me.rdoBidirectional = New System.Windows.Forms.RadioButton()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.rdoUnidirectionalCW = New System.Windows.Forms.RadioButton()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.rdoEndTravelTargetTorque = New System.Windows.Forms.RadioButton()
+        Me.rdoEndTravelRelPos = New System.Windows.Forms.RadioButton()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.rdoDistance = New System.Windows.Forms.RadioButton()
@@ -69,6 +67,10 @@ Partial Class frmTestInput
         Me.txtDataFilePath = New System.Windows.Forms.TextBox()
         Me.cmdLoadCrystalDefaults = New System.Windows.Forms.Button()
         Me.cmdLoadFrameDefaults = New System.Windows.Forms.Button()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.rdoUnidirectionalCCW = New System.Windows.Forms.RadioButton()
+        Me.rdoBidirectional = New System.Windows.Forms.RadioButton()
+        Me.rdoUnidirectionalCW = New System.Windows.Forms.RadioButton()
         CType(Me.txtNumCycles, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.txtFixtureErrorCyles, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +79,7 @@ Partial Class frmTestInput
         Me.GroupBox5.SuspendLayout()
         CType(Me.numDwellTime, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtNumCycles
@@ -93,20 +96,20 @@ Partial Class frmTestInput
         '
         'cmdStart
         '
-        Me.cmdStart.Location = New System.Drawing.Point(296, 336)
+        Me.cmdStart.Location = New System.Drawing.Point(8, 360)
         Me.cmdStart.Name = "cmdStart"
-        Me.cmdStart.Size = New System.Drawing.Size(144, 24)
-        Me.cmdStart.TabIndex = 7
+        Me.cmdStart.Size = New System.Drawing.Size(136, 24)
+        Me.cmdStart.TabIndex = 6
         Me.cmdStart.Text = "&Start Test"
         Me.cmdStart.UseVisualStyleBackColor = True
         '
         'cmdCancel
         '
         Me.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdCancel.Location = New System.Drawing.Point(448, 336)
+        Me.cmdCancel.Location = New System.Drawing.Point(152, 360)
         Me.cmdCancel.Name = "cmdCancel"
-        Me.cmdCancel.Size = New System.Drawing.Size(144, 24)
-        Me.cmdCancel.TabIndex = 8
+        Me.cmdCancel.Size = New System.Drawing.Size(136, 24)
+        Me.cmdCancel.TabIndex = 7
         Me.cmdCancel.Text = "&Cancel"
         Me.cmdCancel.UseVisualStyleBackColor = True
         '
@@ -116,10 +119,10 @@ Partial Class frmTestInput
         Me.GroupBox1.Controls.Add(Me.txtFixtureErrorCyles)
         Me.GroupBox1.Controls.Add(Me.chkEndOnCycles)
         Me.GroupBox1.Controls.Add(Me.txtNumCycles)
-        Me.GroupBox1.Location = New System.Drawing.Point(296, 152)
+        Me.GroupBox1.Location = New System.Drawing.Point(296, 192)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(296, 74)
-        Me.GroupBox1.TabIndex = 3
+        Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Test End Conditions"
         '
@@ -157,78 +160,56 @@ Partial Class frmTestInput
         '
         'txtRelPos
         '
-        Me.txtRelPos.Location = New System.Drawing.Point(136, 20)
+        Me.txtRelPos.Location = New System.Drawing.Point(160, 24)
         Me.txtRelPos.Name = "txtRelPos"
         Me.txtRelPos.Size = New System.Drawing.Size(64, 20)
-        Me.txtRelPos.TabIndex = 0
+        Me.txtRelPos.TabIndex = 1
         Me.txtRelPos.Text = "0.005"
         Me.ToolTip1.SetToolTip(Me.txtRelPos, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
         '
+        'txtTargetTorque
+        '
+        Me.txtTargetTorque.Location = New System.Drawing.Point(160, 48)
+        Me.txtTargetTorque.Name = "txtTargetTorque"
+        Me.txtTargetTorque.Size = New System.Drawing.Size(64, 20)
+        Me.txtTargetTorque.TabIndex = 3
+        Me.txtTargetTorque.Text = "0.005"
+        Me.ToolTip1.SetToolTip(Me.txtTargetTorque, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
+        '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.rdoUnidirectionalCCW)
-        Me.GroupBox2.Controls.Add(Me.rdoBidirectional)
-        Me.GroupBox2.Controls.Add(Me.Label8)
-        Me.GroupBox2.Controls.Add(Me.rdoUnidirectionalCW)
-        Me.GroupBox2.Controls.Add(Me.Label7)
+        Me.GroupBox2.Controls.Add(Me.txtTargetTorque)
+        Me.GroupBox2.Controls.Add(Me.rdoEndTravelTargetTorque)
+        Me.GroupBox2.Controls.Add(Me.rdoEndTravelRelPos)
         Me.GroupBox2.Controls.Add(Me.txtRelPos)
         Me.GroupBox2.Location = New System.Drawing.Point(296, 8)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(296, 136)
+        Me.GroupBox2.Size = New System.Drawing.Size(296, 80)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Travel End Condition"
         '
-        'rdoUnidirectionalCCW
+        'rdoEndTravelTargetTorque
         '
-        Me.rdoUnidirectionalCCW.AutoSize = True
-        Me.rdoUnidirectionalCCW.Location = New System.Drawing.Point(16, 88)
-        Me.rdoUnidirectionalCCW.Name = "rdoUnidirectionalCCW"
-        Me.rdoUnidirectionalCCW.Size = New System.Drawing.Size(176, 17)
-        Me.rdoUnidirectionalCCW.TabIndex = 2
-        Me.rdoUnidirectionalCCW.TabStop = True
-        Me.rdoUnidirectionalCCW.Text = "Unidirectional Counterclockwise"
-        Me.rdoUnidirectionalCCW.UseVisualStyleBackColor = True
+        Me.rdoEndTravelTargetTorque.AutoSize = True
+        Me.rdoEndTravelTargetTorque.Location = New System.Drawing.Point(16, 48)
+        Me.rdoEndTravelTargetTorque.Name = "rdoEndTravelTargetTorque"
+        Me.rdoEndTravelTargetTorque.Size = New System.Drawing.Size(134, 17)
+        Me.rdoEndTravelTargetTorque.TabIndex = 2
+        Me.rdoEndTravelTargetTorque.TabStop = True
+        Me.rdoEndTravelTargetTorque.Text = "Target Torque [kgf-cm]"
+        Me.rdoEndTravelTargetTorque.UseVisualStyleBackColor = True
         '
-        'rdoBidirectional
+        'rdoEndTravelRelPos
         '
-        Me.rdoBidirectional.AutoSize = True
-        Me.rdoBidirectional.Location = New System.Drawing.Point(16, 112)
-        Me.rdoBidirectional.Name = "rdoBidirectional"
-        Me.rdoBidirectional.Size = New System.Drawing.Size(195, 17)
-        Me.rdoBidirectional.TabIndex = 3
-        Me.rdoBidirectional.TabStop = True
-        Me.rdoBidirectional.Text = "Bidirectional (± from current position)"
-        Me.rdoBidirectional.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(8, 48)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(69, 13)
-        Me.Label8.TabIndex = 4
-        Me.Label8.Text = "Motion Mode"
-        '
-        'rdoUnidirectionalCW
-        '
-        Me.rdoUnidirectionalCW.AutoSize = True
-        Me.rdoUnidirectionalCW.Location = New System.Drawing.Point(16, 64)
-        Me.rdoUnidirectionalCW.Name = "rdoUnidirectionalCW"
-        Me.rdoUnidirectionalCW.Size = New System.Drawing.Size(140, 17)
-        Me.rdoUnidirectionalCW.TabIndex = 1
-        Me.rdoUnidirectionalCW.TabStop = True
-        Me.rdoUnidirectionalCW.Text = "Unidirectional Clockwise"
-        Me.rdoUnidirectionalCW.UseVisualStyleBackColor = True
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(8, 24)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(113, 13)
-        Me.Label7.TabIndex = 2
-        Me.Label7.Text = "Relative Position [deg]"
+        Me.rdoEndTravelRelPos.AutoSize = True
+        Me.rdoEndTravelRelPos.Location = New System.Drawing.Point(16, 24)
+        Me.rdoEndTravelRelPos.Name = "rdoEndTravelRelPos"
+        Me.rdoEndTravelRelPos.Size = New System.Drawing.Size(131, 17)
+        Me.rdoEndTravelRelPos.TabIndex = 0
+        Me.rdoEndTravelRelPos.TabStop = True
+        Me.rdoEndTravelRelPos.Text = "Relative Position [deg]"
+        Me.rdoEndTravelRelPos.UseVisualStyleBackColor = True
         '
         'GroupBox4
         '
@@ -236,10 +217,10 @@ Partial Class frmTestInput
         Me.GroupBox4.Controls.Add(Me.rdoDistance)
         Me.GroupBox4.Controls.Add(Me.rdoDisplacement)
         Me.GroupBox4.Enabled = False
-        Me.GroupBox4.Location = New System.Drawing.Point(296, 232)
+        Me.GroupBox4.Location = New System.Drawing.Point(296, 272)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(296, 64)
-        Me.GroupBox4.TabIndex = 4
+        Me.GroupBox4.Size = New System.Drawing.Size(296, 80)
+        Me.GroupBox4.TabIndex = 5
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Graph Options"
         '
@@ -410,7 +391,7 @@ Partial Class frmTestInput
         Me.GroupBox3.Controls.Add(Me.cmdShowFolderDialog)
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.txtDataFilePath)
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 192)
+        Me.GroupBox3.Location = New System.Drawing.Point(8, 184)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(280, 168)
         Me.GroupBox3.TabIndex = 1
@@ -520,21 +501,66 @@ Partial Class frmTestInput
         '
         'cmdLoadCrystalDefaults
         '
-        Me.cmdLoadCrystalDefaults.Location = New System.Drawing.Point(296, 304)
+        Me.cmdLoadCrystalDefaults.Location = New System.Drawing.Point(296, 360)
         Me.cmdLoadCrystalDefaults.Name = "cmdLoadCrystalDefaults"
         Me.cmdLoadCrystalDefaults.Size = New System.Drawing.Size(144, 24)
-        Me.cmdLoadCrystalDefaults.TabIndex = 5
+        Me.cmdLoadCrystalDefaults.TabIndex = 8
         Me.cmdLoadCrystalDefaults.Text = "Load Crystal Defaults"
         Me.cmdLoadCrystalDefaults.UseVisualStyleBackColor = True
         '
         'cmdLoadFrameDefaults
         '
-        Me.cmdLoadFrameDefaults.Location = New System.Drawing.Point(448, 304)
+        Me.cmdLoadFrameDefaults.Location = New System.Drawing.Point(448, 360)
         Me.cmdLoadFrameDefaults.Name = "cmdLoadFrameDefaults"
         Me.cmdLoadFrameDefaults.Size = New System.Drawing.Size(144, 24)
-        Me.cmdLoadFrameDefaults.TabIndex = 6
+        Me.cmdLoadFrameDefaults.TabIndex = 9
         Me.cmdLoadFrameDefaults.Text = "Load Frame Defaults"
         Me.cmdLoadFrameDefaults.UseVisualStyleBackColor = True
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.rdoUnidirectionalCCW)
+        Me.GroupBox6.Controls.Add(Me.rdoBidirectional)
+        Me.GroupBox6.Controls.Add(Me.rdoUnidirectionalCW)
+        Me.GroupBox6.Location = New System.Drawing.Point(296, 96)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(296, 88)
+        Me.GroupBox6.TabIndex = 3
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Motion Mode"
+        '
+        'rdoUnidirectionalCCW
+        '
+        Me.rdoUnidirectionalCCW.AutoSize = True
+        Me.rdoUnidirectionalCCW.Location = New System.Drawing.Point(16, 40)
+        Me.rdoUnidirectionalCCW.Name = "rdoUnidirectionalCCW"
+        Me.rdoUnidirectionalCCW.Size = New System.Drawing.Size(176, 17)
+        Me.rdoUnidirectionalCCW.TabIndex = 1
+        Me.rdoUnidirectionalCCW.TabStop = True
+        Me.rdoUnidirectionalCCW.Text = "Unidirectional Counterclockwise"
+        Me.rdoUnidirectionalCCW.UseVisualStyleBackColor = True
+        '
+        'rdoBidirectional
+        '
+        Me.rdoBidirectional.AutoSize = True
+        Me.rdoBidirectional.Location = New System.Drawing.Point(16, 64)
+        Me.rdoBidirectional.Name = "rdoBidirectional"
+        Me.rdoBidirectional.Size = New System.Drawing.Size(195, 17)
+        Me.rdoBidirectional.TabIndex = 2
+        Me.rdoBidirectional.TabStop = True
+        Me.rdoBidirectional.Text = "Bidirectional (± from current position)"
+        Me.rdoBidirectional.UseVisualStyleBackColor = True
+        '
+        'rdoUnidirectionalCW
+        '
+        Me.rdoUnidirectionalCW.AutoSize = True
+        Me.rdoUnidirectionalCW.Location = New System.Drawing.Point(16, 16)
+        Me.rdoUnidirectionalCW.Name = "rdoUnidirectionalCW"
+        Me.rdoUnidirectionalCW.Size = New System.Drawing.Size(140, 17)
+        Me.rdoUnidirectionalCW.TabIndex = 0
+        Me.rdoUnidirectionalCW.TabStop = True
+        Me.rdoUnidirectionalCW.Text = "Unidirectional Clockwise"
+        Me.rdoUnidirectionalCW.UseVisualStyleBackColor = True
         '
         'frmTestInput
         '
@@ -543,7 +569,8 @@ Partial Class frmTestInput
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.CancelButton = Me.cmdCancel
-        Me.ClientSize = New System.Drawing.Size(599, 375)
+        Me.ClientSize = New System.Drawing.Size(599, 392)
+        Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.cmdLoadFrameDefaults)
         Me.Controls.Add(Me.cmdLoadCrystalDefaults)
         Me.Controls.Add(Me.GroupBox3)
@@ -571,6 +598,8 @@ Partial Class frmTestInput
         CType(Me.numDwellTime, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -597,10 +626,6 @@ Partial Class frmTestInput
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtOperator As System.Windows.Forms.TextBox
     Friend WithEvents txtDevID As System.Windows.Forms.TextBox
-    Friend WithEvents rdoBidirectional As System.Windows.Forms.RadioButton
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents rdoUnidirectionalCW As System.Windows.Forms.RadioButton
-    Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents txtRelPos As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents rdoDAQNever As System.Windows.Forms.RadioButton
@@ -613,10 +638,16 @@ Partial Class frmTestInput
     Friend WithEvents cmdShowFolderDialog As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtDataFilePath As System.Windows.Forms.TextBox
-    Friend WithEvents rdoUnidirectionalCCW As System.Windows.Forms.RadioButton
     Friend WithEvents rdoFrameHinge As System.Windows.Forms.RadioButton
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents rdoCrystalHinge As System.Windows.Forms.RadioButton
     Friend WithEvents cmdLoadCrystalDefaults As System.Windows.Forms.Button
     Friend WithEvents cmdLoadFrameDefaults As System.Windows.Forms.Button
+    Friend WithEvents txtTargetTorque As System.Windows.Forms.TextBox
+    Friend WithEvents rdoEndTravelTargetTorque As System.Windows.Forms.RadioButton
+    Friend WithEvents rdoEndTravelRelPos As System.Windows.Forms.RadioButton
+    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
+    Friend WithEvents rdoUnidirectionalCCW As System.Windows.Forms.RadioButton
+    Friend WithEvents rdoBidirectional As System.Windows.Forms.RadioButton
+    Friend WithEvents rdoUnidirectionalCW As System.Windows.Forms.RadioButton
 End Class
