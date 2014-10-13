@@ -258,13 +258,14 @@ Module ACSInterface
         End If
     End Function
 
-    Public Function TwistToTargetTorque(ByVal DwellTime As Integer, ByVal TargetTorque As Single, ByRef ErrMsg As String) As Object
+    Public Function TwistToTargetTorque(ByVal DwellTime As Integer, ByVal TargetTorqueCW As Single, ByVal TargetTorqueCCW As Single, ByRef ErrMsg As String) As Object
         'presses the DUT until a position is met 
         Dim BufNum As Integer = 4
         Dim RunStatus As Integer
         Ch.WriteVariable(DwellTime, "DWELLTIME", Ch.ACSC_NONE)
         Ch.WriteVariable(My.Settings.ShortTimeOut / Ticks2ms, "TIMEOUT", Ch.ACSC_NONE)
-        Ch.WriteVariable(TargetTorque / OzIn2KgfCm / My.Settings.FullScaleTorque * My.Settings.FullScaleVoltage * My.Settings.AIScale, "TORQUETARGET", Ch.ACSC_NONE)
+        Ch.WriteVariable(TargetTorqueCW / OzIn2KgfCm / My.Settings.FullScaleTorque * My.Settings.FullScaleVoltage * My.Settings.AIScale, "TORQUETARGETCW", Ch.ACSC_NONE)
+        Ch.WriteVariable(TargetTorqueCCW / OzIn2KgfCm / My.Settings.FullScaleTorque * My.Settings.FullScaleVoltage * My.Settings.AIScale, "TORQUETARGETCCW", Ch.ACSC_NONE)
         Ch.RunBuffer(BufNum)
         Do
             Application.DoEvents()

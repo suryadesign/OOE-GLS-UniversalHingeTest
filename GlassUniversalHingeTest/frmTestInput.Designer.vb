@@ -34,8 +34,11 @@ Partial Class frmTestInput
         Me.chkEndOnCycles = New System.Windows.Forms.CheckBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.txtRelPos = New System.Windows.Forms.TextBox()
-        Me.txtTargetTorque = New System.Windows.Forms.TextBox()
+        Me.txtTargetTorqueCW = New System.Windows.Forms.TextBox()
+        Me.txtTargetTorqueCCW = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.rdoEndTravelTargetTorque = New System.Windows.Forms.RadioButton()
         Me.rdoEndTravelRelPos = New System.Windows.Forms.RadioButton()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -85,20 +88,22 @@ Partial Class frmTestInput
         'txtNumCycles
         '
         Me.txtNumCycles.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.txtNumCycles.Location = New System.Drawing.Point(168, 20)
+        Me.txtNumCycles.Location = New System.Drawing.Point(224, 25)
+        Me.txtNumCycles.Margin = New System.Windows.Forms.Padding(4)
         Me.txtNumCycles.Maximum = New Decimal(New Integer() {10000000, 0, 0, 0})
         Me.txtNumCycles.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.txtNumCycles.Name = "txtNumCycles"
-        Me.txtNumCycles.Size = New System.Drawing.Size(120, 20)
+        Me.txtNumCycles.Size = New System.Drawing.Size(160, 22)
         Me.txtNumCycles.TabIndex = 1
         Me.txtNumCycles.ThousandsSeparator = True
         Me.txtNumCycles.Value = New Decimal(New Integer() {9999999, 0, 0, 0})
         '
         'cmdStart
         '
-        Me.cmdStart.Location = New System.Drawing.Point(8, 360)
+        Me.cmdStart.Location = New System.Drawing.Point(11, 456)
+        Me.cmdStart.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdStart.Name = "cmdStart"
-        Me.cmdStart.Size = New System.Drawing.Size(136, 24)
+        Me.cmdStart.Size = New System.Drawing.Size(181, 30)
         Me.cmdStart.TabIndex = 6
         Me.cmdStart.Text = "&Start Test"
         Me.cmdStart.UseVisualStyleBackColor = True
@@ -106,9 +111,10 @@ Partial Class frmTestInput
         'cmdCancel
         '
         Me.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdCancel.Location = New System.Drawing.Point(152, 360)
+        Me.cmdCancel.Location = New System.Drawing.Point(203, 456)
+        Me.cmdCancel.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdCancel.Name = "cmdCancel"
-        Me.cmdCancel.Size = New System.Drawing.Size(136, 24)
+        Me.cmdCancel.Size = New System.Drawing.Size(181, 30)
         Me.cmdCancel.TabIndex = 7
         Me.cmdCancel.Text = "&Cancel"
         Me.cmdCancel.UseVisualStyleBackColor = True
@@ -119,9 +125,11 @@ Partial Class frmTestInput
         Me.GroupBox1.Controls.Add(Me.txtFixtureErrorCyles)
         Me.GroupBox1.Controls.Add(Me.chkEndOnCycles)
         Me.GroupBox1.Controls.Add(Me.txtNumCycles)
-        Me.GroupBox1.Location = New System.Drawing.Point(296, 192)
+        Me.GroupBox1.Location = New System.Drawing.Point(395, 264)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(296, 74)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox1.Size = New System.Drawing.Size(395, 91)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Test End Conditions"
@@ -129,9 +137,10 @@ Partial Class frmTestInput
         'chkFixtureErrorCyles
         '
         Me.chkFixtureErrorCyles.AutoSize = True
-        Me.chkFixtureErrorCyles.Location = New System.Drawing.Point(8, 48)
+        Me.chkFixtureErrorCyles.Location = New System.Drawing.Point(11, 59)
+        Me.chkFixtureErrorCyles.Margin = New System.Windows.Forms.Padding(4)
         Me.chkFixtureErrorCyles.Name = "chkFixtureErrorCyles"
-        Me.chkFixtureErrorCyles.Size = New System.Drawing.Size(116, 17)
+        Me.chkFixtureErrorCyles.Size = New System.Drawing.Size(153, 21)
         Me.chkFixtureErrorCyles.TabIndex = 2
         Me.chkFixtureErrorCyles.Text = "Fixture Error Cycles"
         Me.chkFixtureErrorCyles.UseVisualStyleBackColor = True
@@ -139,11 +148,12 @@ Partial Class frmTestInput
         'txtFixtureErrorCyles
         '
         Me.txtFixtureErrorCyles.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.txtFixtureErrorCyles.Location = New System.Drawing.Point(168, 44)
+        Me.txtFixtureErrorCyles.Location = New System.Drawing.Point(224, 54)
+        Me.txtFixtureErrorCyles.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFixtureErrorCyles.Maximum = New Decimal(New Integer() {10000000, 0, 0, 0})
         Me.txtFixtureErrorCyles.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.txtFixtureErrorCyles.Name = "txtFixtureErrorCyles"
-        Me.txtFixtureErrorCyles.Size = New System.Drawing.Size(120, 20)
+        Me.txtFixtureErrorCyles.Size = New System.Drawing.Size(160, 22)
         Me.txtFixtureErrorCyles.TabIndex = 3
         Me.txtFixtureErrorCyles.ThousandsSeparator = True
         Me.txtFixtureErrorCyles.Value = New Decimal(New Integer() {9999999, 0, 0, 0})
@@ -151,50 +161,89 @@ Partial Class frmTestInput
         'chkEndOnCycles
         '
         Me.chkEndOnCycles.AutoSize = True
-        Me.chkEndOnCycles.Location = New System.Drawing.Point(8, 24)
+        Me.chkEndOnCycles.Location = New System.Drawing.Point(11, 30)
+        Me.chkEndOnCycles.Margin = New System.Windows.Forms.Padding(4)
         Me.chkEndOnCycles.Name = "chkEndOnCycles"
-        Me.chkEndOnCycles.Size = New System.Drawing.Size(57, 17)
+        Me.chkEndOnCycles.Size = New System.Drawing.Size(71, 21)
         Me.chkEndOnCycles.TabIndex = 0
         Me.chkEndOnCycles.Text = "Cycles"
         Me.chkEndOnCycles.UseVisualStyleBackColor = True
         '
         'txtRelPos
         '
-        Me.txtRelPos.Location = New System.Drawing.Point(160, 24)
+        Me.txtRelPos.Location = New System.Drawing.Point(208, 32)
+        Me.txtRelPos.Margin = New System.Windows.Forms.Padding(4)
         Me.txtRelPos.Name = "txtRelPos"
-        Me.txtRelPos.Size = New System.Drawing.Size(64, 20)
+        Me.txtRelPos.Size = New System.Drawing.Size(84, 22)
         Me.txtRelPos.TabIndex = 1
         Me.txtRelPos.Text = "0.005"
         Me.ToolTip1.SetToolTip(Me.txtRelPos, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
         '
-        'txtTargetTorque
+        'txtTargetTorqueCW
         '
-        Me.txtTargetTorque.Location = New System.Drawing.Point(160, 48)
-        Me.txtTargetTorque.Name = "txtTargetTorque"
-        Me.txtTargetTorque.Size = New System.Drawing.Size(64, 20)
-        Me.txtTargetTorque.TabIndex = 3
-        Me.txtTargetTorque.Text = "0.005"
-        Me.ToolTip1.SetToolTip(Me.txtTargetTorque, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
+        Me.txtTargetTorqueCW.Location = New System.Drawing.Point(208, 64)
+        Me.txtTargetTorqueCW.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTargetTorqueCW.Name = "txtTargetTorqueCW"
+        Me.txtTargetTorqueCW.Size = New System.Drawing.Size(84, 22)
+        Me.txtTargetTorqueCW.TabIndex = 3
+        Me.txtTargetTorqueCW.Text = "0.005"
+        Me.ToolTip1.SetToolTip(Me.txtTargetTorqueCW, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
+        '
+        'txtTargetTorqueCCW
+        '
+        Me.txtTargetTorqueCCW.Location = New System.Drawing.Point(208, 96)
+        Me.txtTargetTorqueCCW.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTargetTorqueCCW.Name = "txtTargetTorqueCCW"
+        Me.txtTargetTorqueCCW.Size = New System.Drawing.Size(84, 22)
+        Me.txtTargetTorqueCCW.TabIndex = 4
+        Me.txtTargetTorqueCCW.Text = "0.005"
+        Me.ToolTip1.SetToolTip(Me.txtTargetTorqueCCW, "Clockwise: Positive angle" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Counterclockwise: Negative angle")
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.txtTargetTorque)
+        Me.GroupBox2.Controls.Add(Me.Label8)
+        Me.GroupBox2.Controls.Add(Me.Label7)
+        Me.GroupBox2.Controls.Add(Me.txtTargetTorqueCCW)
+        Me.GroupBox2.Controls.Add(Me.txtTargetTorqueCW)
         Me.GroupBox2.Controls.Add(Me.rdoEndTravelTargetTorque)
         Me.GroupBox2.Controls.Add(Me.rdoEndTravelRelPos)
         Me.GroupBox2.Controls.Add(Me.txtRelPos)
-        Me.GroupBox2.Location = New System.Drawing.Point(296, 8)
+        Me.GroupBox2.Location = New System.Drawing.Point(395, 10)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(296, 80)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox2.Size = New System.Drawing.Size(395, 126)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Travel End Condition"
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(296, 96)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(39, 17)
+        Me.Label8.TabIndex = 49
+        Me.Label8.Text = "CCW"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(296, 64)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(30, 17)
+        Me.Label7.TabIndex = 48
+        Me.Label7.Text = "CW"
+        '
         'rdoEndTravelTargetTorque
         '
         Me.rdoEndTravelTargetTorque.AutoSize = True
-        Me.rdoEndTravelTargetTorque.Location = New System.Drawing.Point(16, 48)
+        Me.rdoEndTravelTargetTorque.Location = New System.Drawing.Point(21, 59)
+        Me.rdoEndTravelTargetTorque.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoEndTravelTargetTorque.Name = "rdoEndTravelTargetTorque"
-        Me.rdoEndTravelTargetTorque.Size = New System.Drawing.Size(134, 17)
+        Me.rdoEndTravelTargetTorque.Size = New System.Drawing.Size(175, 21)
         Me.rdoEndTravelTargetTorque.TabIndex = 2
         Me.rdoEndTravelTargetTorque.TabStop = True
         Me.rdoEndTravelTargetTorque.Text = "Target Torque [kgf-cm]"
@@ -203,9 +252,10 @@ Partial Class frmTestInput
         'rdoEndTravelRelPos
         '
         Me.rdoEndTravelRelPos.AutoSize = True
-        Me.rdoEndTravelRelPos.Location = New System.Drawing.Point(16, 24)
+        Me.rdoEndTravelRelPos.Location = New System.Drawing.Point(21, 30)
+        Me.rdoEndTravelRelPos.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoEndTravelRelPos.Name = "rdoEndTravelRelPos"
-        Me.rdoEndTravelRelPos.Size = New System.Drawing.Size(131, 17)
+        Me.rdoEndTravelRelPos.Size = New System.Drawing.Size(170, 21)
         Me.rdoEndTravelRelPos.TabIndex = 0
         Me.rdoEndTravelRelPos.TabStop = True
         Me.rdoEndTravelRelPos.Text = "Relative Position [deg]"
@@ -217,9 +267,11 @@ Partial Class frmTestInput
         Me.GroupBox4.Controls.Add(Me.rdoDistance)
         Me.GroupBox4.Controls.Add(Me.rdoDisplacement)
         Me.GroupBox4.Enabled = False
-        Me.GroupBox4.Location = New System.Drawing.Point(296, 272)
+        Me.GroupBox4.Location = New System.Drawing.Point(395, 368)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(296, 80)
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox4.Size = New System.Drawing.Size(395, 80)
         Me.GroupBox4.TabIndex = 5
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Graph Options"
@@ -227,18 +279,20 @@ Partial Class frmTestInput
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 24)
+        Me.Label4.Location = New System.Drawing.Point(11, 30)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(188, 13)
+        Me.Label4.Size = New System.Drawing.Size(252, 17)
         Me.Label4.TabIndex = 40
         Me.Label4.Text = "Display torque as function of angular..."
         '
         'rdoDistance
         '
         Me.rdoDistance.AutoSize = True
-        Me.rdoDistance.Location = New System.Drawing.Point(168, 40)
+        Me.rdoDistance.Location = New System.Drawing.Point(224, 49)
+        Me.rdoDistance.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoDistance.Name = "rdoDistance"
-        Me.rdoDistance.Size = New System.Drawing.Size(67, 17)
+        Me.rdoDistance.Size = New System.Drawing.Size(84, 21)
         Me.rdoDistance.TabIndex = 1
         Me.rdoDistance.Text = "Distance"
         Me.rdoDistance.UseVisualStyleBackColor = True
@@ -247,9 +301,10 @@ Partial Class frmTestInput
         '
         Me.rdoDisplacement.AutoSize = True
         Me.rdoDisplacement.Checked = True
-        Me.rdoDisplacement.Location = New System.Drawing.Point(16, 40)
+        Me.rdoDisplacement.Location = New System.Drawing.Point(21, 49)
+        Me.rdoDisplacement.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoDisplacement.Name = "rdoDisplacement"
-        Me.rdoDisplacement.Size = New System.Drawing.Size(89, 17)
+        Me.rdoDisplacement.Size = New System.Drawing.Size(114, 21)
         Me.rdoDisplacement.TabIndex = 0
         Me.rdoDisplacement.TabStop = True
         Me.rdoDisplacement.Text = "Displacement"
@@ -268,9 +323,11 @@ Partial Class frmTestInput
         Me.GroupBox5.Controls.Add(Me.Label1)
         Me.GroupBox5.Controls.Add(Me.txtOperator)
         Me.GroupBox5.Controls.Add(Me.txtDevID)
-        Me.GroupBox5.Location = New System.Drawing.Point(8, 8)
+        Me.GroupBox5.Location = New System.Drawing.Point(11, 10)
+        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(280, 168)
+        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox5.Size = New System.Drawing.Size(373, 207)
         Me.GroupBox5.TabIndex = 0
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "General Test Info/Options"
@@ -278,9 +335,10 @@ Partial Class frmTestInput
         'rdoFrameHinge
         '
         Me.rdoFrameHinge.AutoSize = True
-        Me.rdoFrameHinge.Location = New System.Drawing.Point(128, 136)
+        Me.rdoFrameHinge.Location = New System.Drawing.Point(171, 167)
+        Me.rdoFrameHinge.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoFrameHinge.Name = "rdoFrameHinge"
-        Me.rdoFrameHinge.Size = New System.Drawing.Size(85, 17)
+        Me.rdoFrameHinge.Size = New System.Drawing.Size(110, 21)
         Me.rdoFrameHinge.TabIndex = 6
         Me.rdoFrameHinge.TabStop = True
         Me.rdoFrameHinge.Text = "Frame Hinge"
@@ -289,18 +347,20 @@ Partial Class frmTestInput
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(8, 120)
+        Me.Label9.Location = New System.Drawing.Point(11, 148)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(68, 13)
+        Me.Label9.Size = New System.Drawing.Size(87, 17)
         Me.Label9.TabIndex = 51
         Me.Label9.Text = "Device Type"
         '
         'rdoCrystalHinge
         '
         Me.rdoCrystalHinge.AutoSize = True
-        Me.rdoCrystalHinge.Location = New System.Drawing.Point(16, 136)
+        Me.rdoCrystalHinge.Location = New System.Drawing.Point(21, 167)
+        Me.rdoCrystalHinge.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoCrystalHinge.Name = "rdoCrystalHinge"
-        Me.rdoCrystalHinge.Size = New System.Drawing.Size(87, 17)
+        Me.rdoCrystalHinge.Size = New System.Drawing.Size(113, 21)
         Me.rdoCrystalHinge.TabIndex = 5
         Me.rdoCrystalHinge.TabStop = True
         Me.rdoCrystalHinge.Text = "Crystal Hinge"
@@ -309,9 +369,10 @@ Partial Class frmTestInput
         'txtTorqueLimit
         '
         Me.txtTorqueLimit.Enabled = False
-        Me.txtTorqueLimit.Location = New System.Drawing.Point(160, 92)
+        Me.txtTorqueLimit.Location = New System.Drawing.Point(213, 113)
+        Me.txtTorqueLimit.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTorqueLimit.Name = "txtTorqueLimit"
-        Me.txtTorqueLimit.Size = New System.Drawing.Size(64, 20)
+        Me.txtTorqueLimit.Size = New System.Drawing.Size(84, 22)
         Me.txtTorqueLimit.TabIndex = 4
         Me.txtTorqueLimit.Text = "0.005"
         '
@@ -319,9 +380,10 @@ Partial Class frmTestInput
         '
         Me.chkLimitTorque.AutoSize = True
         Me.chkLimitTorque.Enabled = False
-        Me.chkLimitTorque.Location = New System.Drawing.Point(8, 96)
+        Me.chkLimitTorque.Location = New System.Drawing.Point(11, 118)
+        Me.chkLimitTorque.Margin = New System.Windows.Forms.Padding(4)
         Me.chkLimitTorque.Name = "chkLimitTorque"
-        Me.chkLimitTorque.Size = New System.Drawing.Size(121, 17)
+        Me.chkLimitTorque.Size = New System.Drawing.Size(158, 21)
         Me.chkLimitTorque.TabIndex = 3
         Me.chkLimitTorque.Text = "Limit torque [kgf-cm]"
         Me.chkLimitTorque.UseVisualStyleBackColor = True
@@ -329,11 +391,12 @@ Partial Class frmTestInput
         'numDwellTime
         '
         Me.numDwellTime.Increment = New Decimal(New Integer() {1000, 0, 0, 0})
-        Me.numDwellTime.Location = New System.Drawing.Point(160, 68)
+        Me.numDwellTime.Location = New System.Drawing.Point(213, 84)
+        Me.numDwellTime.Margin = New System.Windows.Forms.Padding(4)
         Me.numDwellTime.Maximum = New Decimal(New Integer() {10000000, 0, 0, 0})
         Me.numDwellTime.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.numDwellTime.Name = "numDwellTime"
-        Me.numDwellTime.Size = New System.Drawing.Size(104, 20)
+        Me.numDwellTime.Size = New System.Drawing.Size(139, 22)
         Me.numDwellTime.TabIndex = 2
         Me.numDwellTime.ThousandsSeparator = True
         Me.numDwellTime.Value = New Decimal(New Integer() {9999999, 0, 0, 0})
@@ -341,42 +404,47 @@ Partial Class frmTestInput
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(8, 72)
+        Me.Label5.Location = New System.Drawing.Point(11, 89)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(93, 13)
+        Me.Label5.Size = New System.Drawing.Size(121, 17)
         Me.Label5.TabIndex = 49
         Me.Label5.Text = "Dwell Time [msec]"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 48)
+        Me.Label6.Location = New System.Drawing.Point(11, 59)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(48, 13)
+        Me.Label6.Size = New System.Drawing.Size(65, 17)
         Me.Label6.TabIndex = 48
         Me.Label6.Text = "Operator"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 24)
+        Me.Label1.Location = New System.Drawing.Point(11, 30)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(55, 13)
+        Me.Label1.Size = New System.Drawing.Size(68, 17)
         Me.Label1.TabIndex = 47
         Me.Label1.Text = "Device ID"
         '
         'txtOperator
         '
-        Me.txtOperator.Location = New System.Drawing.Point(160, 44)
+        Me.txtOperator.Location = New System.Drawing.Point(213, 54)
+        Me.txtOperator.Margin = New System.Windows.Forms.Padding(4)
         Me.txtOperator.Name = "txtOperator"
-        Me.txtOperator.Size = New System.Drawing.Size(100, 20)
+        Me.txtOperator.Size = New System.Drawing.Size(132, 22)
         Me.txtOperator.TabIndex = 1
         '
         'txtDevID
         '
-        Me.txtDevID.Location = New System.Drawing.Point(160, 20)
+        Me.txtDevID.Location = New System.Drawing.Point(213, 25)
+        Me.txtDevID.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDevID.Name = "txtDevID"
-        Me.txtDevID.Size = New System.Drawing.Size(100, 20)
+        Me.txtDevID.Size = New System.Drawing.Size(132, 22)
         Me.txtDevID.TabIndex = 0
         '
         'GroupBox3
@@ -391,9 +459,11 @@ Partial Class frmTestInput
         Me.GroupBox3.Controls.Add(Me.cmdShowFolderDialog)
         Me.GroupBox3.Controls.Add(Me.Label2)
         Me.GroupBox3.Controls.Add(Me.txtDataFilePath)
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 184)
+        Me.GroupBox3.Location = New System.Drawing.Point(11, 232)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(280, 168)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox3.Size = New System.Drawing.Size(373, 214)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Data Acquisition Options"
@@ -401,9 +471,10 @@ Partial Class frmTestInput
         'rdoDAQNever
         '
         Me.rdoDAQNever.AutoSize = True
-        Me.rdoDAQNever.Location = New System.Drawing.Point(16, 40)
+        Me.rdoDAQNever.Location = New System.Drawing.Point(21, 49)
+        Me.rdoDAQNever.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoDAQNever.Name = "rdoDAQNever"
-        Me.rdoDAQNever.Size = New System.Drawing.Size(54, 17)
+        Me.rdoDAQNever.Size = New System.Drawing.Size(67, 21)
         Me.rdoDAQNever.TabIndex = 0
         Me.rdoDAQNever.TabStop = True
         Me.rdoDAQNever.Text = "Never"
@@ -412,18 +483,20 @@ Partial Class frmTestInput
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(8, 24)
+        Me.Label3.Location = New System.Drawing.Point(11, 30)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(124, 13)
+        Me.Label3.Size = New System.Drawing.Size(165, 17)
         Me.Label3.TabIndex = 39
         Me.Label3.Text = "Record full torque data..."
         '
         'rdoDAQProgInt
         '
         Me.rdoDAQProgInt.AutoSize = True
-        Me.rdoDAQProgInt.Location = New System.Drawing.Point(128, 88)
+        Me.rdoDAQProgInt.Location = New System.Drawing.Point(171, 108)
+        Me.rdoDAQProgInt.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoDAQProgInt.Name = "rdoDAQProgInt"
-        Me.rdoDAQProgInt.Size = New System.Drawing.Size(135, 17)
+        Me.rdoDAQProgInt.Size = New System.Drawing.Size(177, 21)
         Me.rdoDAQProgInt.TabIndex = 5
         Me.rdoDAQProgInt.TabStop = True
         Me.rdoDAQProgInt.Text = "On Progressive Interval"
@@ -432,9 +505,10 @@ Partial Class frmTestInput
         'rdoDAQEvery1000
         '
         Me.rdoDAQEvery1000.AutoSize = True
-        Me.rdoDAQEvery1000.Location = New System.Drawing.Point(128, 64)
+        Me.rdoDAQEvery1000.Location = New System.Drawing.Point(171, 79)
+        Me.rdoDAQEvery1000.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoDAQEvery1000.Name = "rdoDAQEvery1000"
-        Me.rdoDAQEvery1000.Size = New System.Drawing.Size(117, 17)
+        Me.rdoDAQEvery1000.Size = New System.Drawing.Size(151, 21)
         Me.rdoDAQEvery1000.TabIndex = 4
         Me.rdoDAQEvery1000.TabStop = True
         Me.rdoDAQEvery1000.Text = "Every 1000th Cycle"
@@ -443,9 +517,10 @@ Partial Class frmTestInput
         'rdoDAQEvery100
         '
         Me.rdoDAQEvery100.AutoSize = True
-        Me.rdoDAQEvery100.Location = New System.Drawing.Point(128, 40)
+        Me.rdoDAQEvery100.Location = New System.Drawing.Point(171, 49)
+        Me.rdoDAQEvery100.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoDAQEvery100.Name = "rdoDAQEvery100"
-        Me.rdoDAQEvery100.Size = New System.Drawing.Size(111, 17)
+        Me.rdoDAQEvery100.Size = New System.Drawing.Size(143, 21)
         Me.rdoDAQEvery100.TabIndex = 3
         Me.rdoDAQEvery100.TabStop = True
         Me.rdoDAQEvery100.Text = "Every 100th Cycle"
@@ -454,9 +529,10 @@ Partial Class frmTestInput
         'rdoDAQEvery10
         '
         Me.rdoDAQEvery10.AutoSize = True
-        Me.rdoDAQEvery10.Location = New System.Drawing.Point(16, 88)
+        Me.rdoDAQEvery10.Location = New System.Drawing.Point(21, 108)
+        Me.rdoDAQEvery10.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoDAQEvery10.Name = "rdoDAQEvery10"
-        Me.rdoDAQEvery10.Size = New System.Drawing.Size(105, 17)
+        Me.rdoDAQEvery10.Size = New System.Drawing.Size(135, 21)
         Me.rdoDAQEvery10.TabIndex = 2
         Me.rdoDAQEvery10.TabStop = True
         Me.rdoDAQEvery10.Text = "Every 10th Cycle"
@@ -465,9 +541,10 @@ Partial Class frmTestInput
         'rdoDAQEvery1
         '
         Me.rdoDAQEvery1.AutoSize = True
-        Me.rdoDAQEvery1.Location = New System.Drawing.Point(16, 64)
+        Me.rdoDAQEvery1.Location = New System.Drawing.Point(21, 79)
+        Me.rdoDAQEvery1.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoDAQEvery1.Name = "rdoDAQEvery1"
-        Me.rdoDAQEvery1.Size = New System.Drawing.Size(81, 17)
+        Me.rdoDAQEvery1.Size = New System.Drawing.Size(103, 21)
         Me.rdoDAQEvery1.TabIndex = 1
         Me.rdoDAQEvery1.TabStop = True
         Me.rdoDAQEvery1.Text = "Every Cycle"
@@ -477,42 +554,47 @@ Partial Class frmTestInput
         '
         Me.cmdShowFolderDialog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmdShowFolderDialog.Image = CType(resources.GetObject("cmdShowFolderDialog.Image"), System.Drawing.Image)
-        Me.cmdShowFolderDialog.Location = New System.Drawing.Point(240, 136)
+        Me.cmdShowFolderDialog.Location = New System.Drawing.Point(320, 167)
+        Me.cmdShowFolderDialog.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdShowFolderDialog.Name = "cmdShowFolderDialog"
-        Me.cmdShowFolderDialog.Size = New System.Drawing.Size(24, 24)
+        Me.cmdShowFolderDialog.Size = New System.Drawing.Size(32, 30)
         Me.cmdShowFolderDialog.TabIndex = 7
         Me.cmdShowFolderDialog.UseVisualStyleBackColor = True
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 120)
+        Me.Label2.Location = New System.Drawing.Point(11, 148)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(74, 13)
+        Me.Label2.Size = New System.Drawing.Size(97, 17)
         Me.Label2.TabIndex = 31
         Me.Label2.Text = "Data File Path"
         '
         'txtDataFilePath
         '
-        Me.txtDataFilePath.Location = New System.Drawing.Point(8, 136)
+        Me.txtDataFilePath.Location = New System.Drawing.Point(11, 167)
+        Me.txtDataFilePath.Margin = New System.Windows.Forms.Padding(4)
         Me.txtDataFilePath.Name = "txtDataFilePath"
-        Me.txtDataFilePath.Size = New System.Drawing.Size(232, 20)
+        Me.txtDataFilePath.Size = New System.Drawing.Size(308, 22)
         Me.txtDataFilePath.TabIndex = 6
         '
         'cmdLoadCrystalDefaults
         '
-        Me.cmdLoadCrystalDefaults.Location = New System.Drawing.Point(296, 360)
+        Me.cmdLoadCrystalDefaults.Location = New System.Drawing.Point(395, 456)
+        Me.cmdLoadCrystalDefaults.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdLoadCrystalDefaults.Name = "cmdLoadCrystalDefaults"
-        Me.cmdLoadCrystalDefaults.Size = New System.Drawing.Size(144, 24)
+        Me.cmdLoadCrystalDefaults.Size = New System.Drawing.Size(192, 30)
         Me.cmdLoadCrystalDefaults.TabIndex = 8
         Me.cmdLoadCrystalDefaults.Text = "Load Crystal Defaults"
         Me.cmdLoadCrystalDefaults.UseVisualStyleBackColor = True
         '
         'cmdLoadFrameDefaults
         '
-        Me.cmdLoadFrameDefaults.Location = New System.Drawing.Point(448, 360)
+        Me.cmdLoadFrameDefaults.Location = New System.Drawing.Point(597, 456)
+        Me.cmdLoadFrameDefaults.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdLoadFrameDefaults.Name = "cmdLoadFrameDefaults"
-        Me.cmdLoadFrameDefaults.Size = New System.Drawing.Size(144, 24)
+        Me.cmdLoadFrameDefaults.Size = New System.Drawing.Size(192, 30)
         Me.cmdLoadFrameDefaults.TabIndex = 9
         Me.cmdLoadFrameDefaults.Text = "Load Frame Defaults"
         Me.cmdLoadFrameDefaults.UseVisualStyleBackColor = True
@@ -522,9 +604,11 @@ Partial Class frmTestInput
         Me.GroupBox6.Controls.Add(Me.rdoUnidirectionalCCW)
         Me.GroupBox6.Controls.Add(Me.rdoBidirectional)
         Me.GroupBox6.Controls.Add(Me.rdoUnidirectionalCW)
-        Me.GroupBox6.Location = New System.Drawing.Point(296, 96)
+        Me.GroupBox6.Location = New System.Drawing.Point(395, 144)
+        Me.GroupBox6.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(296, 88)
+        Me.GroupBox6.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox6.Size = New System.Drawing.Size(395, 108)
         Me.GroupBox6.TabIndex = 3
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Motion Mode"
@@ -532,9 +616,10 @@ Partial Class frmTestInput
         'rdoUnidirectionalCCW
         '
         Me.rdoUnidirectionalCCW.AutoSize = True
-        Me.rdoUnidirectionalCCW.Location = New System.Drawing.Point(16, 40)
+        Me.rdoUnidirectionalCCW.Location = New System.Drawing.Point(21, 49)
+        Me.rdoUnidirectionalCCW.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoUnidirectionalCCW.Name = "rdoUnidirectionalCCW"
-        Me.rdoUnidirectionalCCW.Size = New System.Drawing.Size(176, 17)
+        Me.rdoUnidirectionalCCW.Size = New System.Drawing.Size(228, 21)
         Me.rdoUnidirectionalCCW.TabIndex = 1
         Me.rdoUnidirectionalCCW.TabStop = True
         Me.rdoUnidirectionalCCW.Text = "Unidirectional Counterclockwise"
@@ -543,9 +628,10 @@ Partial Class frmTestInput
         'rdoBidirectional
         '
         Me.rdoBidirectional.AutoSize = True
-        Me.rdoBidirectional.Location = New System.Drawing.Point(16, 64)
+        Me.rdoBidirectional.Location = New System.Drawing.Point(21, 79)
+        Me.rdoBidirectional.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoBidirectional.Name = "rdoBidirectional"
-        Me.rdoBidirectional.Size = New System.Drawing.Size(195, 17)
+        Me.rdoBidirectional.Size = New System.Drawing.Size(262, 21)
         Me.rdoBidirectional.TabIndex = 2
         Me.rdoBidirectional.TabStop = True
         Me.rdoBidirectional.Text = "Bidirectional (± from current position)"
@@ -554,9 +640,10 @@ Partial Class frmTestInput
         'rdoUnidirectionalCW
         '
         Me.rdoUnidirectionalCW.AutoSize = True
-        Me.rdoUnidirectionalCW.Location = New System.Drawing.Point(16, 16)
+        Me.rdoUnidirectionalCW.Location = New System.Drawing.Point(21, 20)
+        Me.rdoUnidirectionalCW.Margin = New System.Windows.Forms.Padding(4)
         Me.rdoUnidirectionalCW.Name = "rdoUnidirectionalCW"
-        Me.rdoUnidirectionalCW.Size = New System.Drawing.Size(140, 17)
+        Me.rdoUnidirectionalCW.Size = New System.Drawing.Size(180, 21)
         Me.rdoUnidirectionalCW.TabIndex = 0
         Me.rdoUnidirectionalCW.TabStop = True
         Me.rdoUnidirectionalCW.Text = "Unidirectional Clockwise"
@@ -565,11 +652,11 @@ Partial Class frmTestInput
         'frmTestInput
         '
         Me.AcceptButton = Me.cmdStart
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.CancelButton = Me.cmdCancel
-        Me.ClientSize = New System.Drawing.Size(599, 392)
+        Me.ClientSize = New System.Drawing.Size(799, 493)
         Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.cmdLoadFrameDefaults)
         Me.Controls.Add(Me.cmdLoadCrystalDefaults)
@@ -582,6 +669,7 @@ Partial Class frmTestInput
         Me.Controls.Add(Me.cmdStart)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmTestInput"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Test Information..."
@@ -643,11 +731,14 @@ Partial Class frmTestInput
     Friend WithEvents rdoCrystalHinge As System.Windows.Forms.RadioButton
     Friend WithEvents cmdLoadCrystalDefaults As System.Windows.Forms.Button
     Friend WithEvents cmdLoadFrameDefaults As System.Windows.Forms.Button
-    Friend WithEvents txtTargetTorque As System.Windows.Forms.TextBox
+    Friend WithEvents txtTargetTorqueCW As System.Windows.Forms.TextBox
     Friend WithEvents rdoEndTravelTargetTorque As System.Windows.Forms.RadioButton
     Friend WithEvents rdoEndTravelRelPos As System.Windows.Forms.RadioButton
     Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
     Friend WithEvents rdoUnidirectionalCCW As System.Windows.Forms.RadioButton
     Friend WithEvents rdoBidirectional As System.Windows.Forms.RadioButton
     Friend WithEvents rdoUnidirectionalCW As System.Windows.Forms.RadioButton
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents txtTargetTorqueCCW As System.Windows.Forms.TextBox
 End Class

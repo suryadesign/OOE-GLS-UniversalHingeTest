@@ -40,7 +40,8 @@
                 rdoEndTravelTargetTorque.Checked = True
         End Select
         txtRelPos.Text = My.Settings.LastRelPos
-        txtTargetTorque.Text = My.Settings.LastTargetTorque
+        txtTargetTorqueCW.Text = My.Settings.LastTargetTorqueCW
+        txtTargetTorqueCCW.Text = My.Settings.LastTargetTorqueCCW
 
         Select Case My.Settings.LastMotionMode
             Case frmMain.CWUnidirectional
@@ -81,7 +82,8 @@
         If rdoEndTravelRelPos.Checked Then My.Settings.LastTravelEndCondition = frmMain.EndTravelRelPos
         If rdoEndTravelTargetTorque.Checked Then My.Settings.LastTravelEndCondition = frmMain.EndTravelTargetTorque
         My.Settings.LastRelPos = txtRelPos.Text
-        My.Settings.LastTargetTorque = txtTargetTorque.Text
+        My.Settings.LastTargetTorqueCW = txtTargetTorqueCW.Text
+        My.Settings.LastTargetTorqueCCW = txtTargetTorqueCCW.Text
         If rdoUnidirectionalCW.Checked Then My.Settings.LastMotionMode = frmMain.CWUnidirectional
         If rdoUnidirectionalCCW.Checked Then My.Settings.LastMotionMode = frmMain.CCWUnidirectional
         If rdoBidirectional.Checked Then My.Settings.LastMotionMode = frmMain.Bidirectional
@@ -111,7 +113,8 @@
         If rdoEndTravelRelPos.Checked Then frmMain.TravelEndCondition = frmMain.EndTravelRelPos
         If rdoEndTravelTargetTorque.Checked Then frmMain.TravelEndCondition = frmMain.EndTravelTargetTorque
         frmMain.RelPos = txtRelPos.Text
-        frmMain.TargetTorque = txtTargetTorque.Text
+        frmMain.TargetTorqueCW = txtTargetTorqueCW.Text
+        frmMain.TargetTorqueCCW = txtTargetTorqueCCW.Text
         If rdoUnidirectionalCW.Checked Then frmMain.MotionMode = frmMain.CWUnidirectional
         If rdoUnidirectionalCCW.Checked Then frmMain.MotionMode = frmMain.CCWUnidirectional
         If rdoBidirectional.Checked Then frmMain.MotionMode = frmMain.Bidirectional
@@ -185,19 +188,37 @@
         txtRelPos.Text = My.Settings.DefaultFrameRelPos
     End Sub
 
-    Private Sub txtTargetTorque_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTargetTorque.Validated
-        If Not IsNumeric(txtTargetTorque.Text) Then
+    Private Sub txtTargetTorqueCW_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTargetTorqueCW.Validated
+        If Not IsNumeric(txtTargetTorqueCW.Text) Then
             MessageBox.Show("Torque limit must be numeric.")
-            txtTargetTorque.Text = My.Settings.LastTorqueLimit
+            txtTargetTorqueCW.Text = My.Settings.LastTorqueLimit
         Else
-            If txtTargetTorque.Text < NominalMinTorque Then
+            If txtTargetTorqueCW.Text < NominalMinTorque Then
                 MessageBox.Show("Torque limit must be greater than " & NominalMinTorque.ToString("n2") & " kgf-cm.")
-                txtTargetTorque.Text = NominalMinTorque
+                txtTargetTorqueCW.Text = NominalMinTorque
             End If
-            If txtTargetTorque.Text > NominalMaxTorque Then
+            If txtTargetTorqueCW.Text > NominalMaxTorque Then
                 MessageBox.Show("Torque limit must be less than " & NominalMaxTorque.ToString("n2") & " kgf-cm.")
-                txtTargetTorque.Text = NominalMaxTorque
+                txtTargetTorqueCW.Text = NominalMaxTorque
             End If
         End If
     End Sub
+
+
+    Private Sub txtTargetTorqueCCW_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTargetTorqueCCW.Validated
+        If Not IsNumeric(txtTargetTorqueCCW.Text) Then
+            MessageBox.Show("Torque limit must be numeric.")
+            txtTargetTorqueCCW.Text = My.Settings.LastTorqueLimit
+        Else
+            If txtTargetTorqueCCW.Text < NominalMinTorque Then
+                MessageBox.Show("Torque limit must be greater than " & NominalMinTorque.ToString("n2") & " kgf-cm.")
+                txtTargetTorqueCCW.Text = NominalMinTorque
+            End If
+            If txtTargetTorqueCCW.Text > NominalMaxTorque Then
+                MessageBox.Show("Torque limit must be less than " & NominalMaxTorque.ToString("n2") & " kgf-cm.")
+                txtTargetTorqueCCW.Text = NominalMaxTorque
+            End If
+        End If
+    End Sub
+
 End Class

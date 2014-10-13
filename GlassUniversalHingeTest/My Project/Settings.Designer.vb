@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("10.0.0.102")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10.0.10.103")>  _
         Public ReadOnly Property ACSIP() As String
             Get
                 Return CType(Me("ACSIP"),String)
@@ -299,7 +299,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("180")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("25")>  _
         Public Property VelTheta() As Decimal
             Get
                 Return CType(Me("VelTheta"),Decimal)
@@ -347,7 +347,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("360000")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("18000")>  _
         Public Property KDecTheta() As Decimal
             Get
                 Return CType(Me("KDecTheta"),Decimal)
@@ -606,12 +606,24 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("0.5")>  _
-        Public Property LastTargetTorque() As Decimal
+        Public Property LastTargetTorqueCW() As Decimal
             Get
-                Return CType(Me("LastTargetTorque"),Decimal)
+                Return CType(Me("LastTargetTorqueCW"),Decimal)
             End Get
             Set
-                Me("LastTargetTorque") = value
+                Me("LastTargetTorqueCW") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0.5")>  _
+        Public Property LastTargetTorqueCCW() As Decimal
+            Get
+                Return CType(Me("LastTargetTorqueCCW"),Decimal)
+            End Get
+            Set
+                Me("LastTargetTorqueCCW") = value
             End Set
         End Property
     End Class

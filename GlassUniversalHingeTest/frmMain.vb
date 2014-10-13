@@ -21,7 +21,7 @@
         GraphDisplay, DeviceType, MotionMode, TravelEndCondition As Integer
     ' graphdisplay indicates whether graphing vs displacement or distance
     ' motionmode is whether motion is bidirectional or unidir CW/CCW
-    Public RelPos, TorqueLimit, TargetTorque As Single
+    Public RelPos, TorqueLimit, TargetTorqueCW, TargetTorqueCCW As Single
     Public EndOnCycles, EndOnFixtureFailLimit, TimedOut, LimitTorque As Boolean
 
     Public PauseFlag As Boolean = False     'flag for if user pauses testing
@@ -429,7 +429,8 @@
                 Case EndTravelRelPos
                     MainDataFile.WriteLine("Travel End Position:" & ControlChars.Tab & "Relative Postion (" & RelPos.ToString("n3") & "°)")
                 Case EndTravelTargetTorque
-                    MainDataFile.WriteLine("Travel End Position:" & ControlChars.Tab & "Torque Limit (" & TargetTorque.ToString("n2") & " kgf-cm)")
+                    MainDataFile.WriteLine("Travel End Target Torque (CW):" & ControlChars.Tab & "Torque Limit (" & TargetTorqueCW.ToString("n2") & " kgf-cm)")
+                    MainDataFile.WriteLine("Travel End Target Torque (CCW):" & ControlChars.Tab & "Torque Limit (" & TargetTorqueCCW.ToString("n2") & " kgf-cm)")
             End Select
             MainDataFile.WriteLine("Test End Conditions:")
             MainDataFile.WriteLine(ControlChars.Tab & "Number of Cycles:" & ControlChars.Tab & IIf(EndOnCycles, NumCycles, "n/a"))
@@ -524,7 +525,7 @@
                         TorqueArray = TwistToPosition(InitLoc, DwellTime, InitLoc + 2 * OffsetTheta + 2 * RelPos, ErrMsg)
                     End If
                 Case EndTravelTargetTorque
-                    TorqueArray = TwistToTargetTorque(DwellTime, TargetTorque, ErrMsg)
+                    TorqueArray = TwistToTargetTorque(DwellTime, TargetTorqueCW, TargetTorqueCCW, ErrMsg)
             End Select
             If IsNumeric(TorqueArray) Then
                 stpStatusStrip.Text = ErrMsg
